@@ -2,10 +2,10 @@
     "ConfigVersion": 3,
     "Driver": {
         "IPAddress": "",
-        "MachineName": "dronuts2021-team7b",
+        "MachineName": "dronuts2021-team7",
         "SSHUser": "azureuser",
         "SSHPort": 22,
-        "SSHKeyPath": "/Users/ayaanh3/.docker/machine/machines/dronuts2021-team7b/id_rsa",
+        "SSHKeyPath": "/Users/ayaanh3/.docker/machine/machines/dronuts2021-team7/id_rsa",
         "StorePath": "/Users/ayaanh3/.docker/machine",
         "SwarmMaster": false,
         "SwarmHost": "tcp://0.0.0.0:3376",
@@ -75,15 +75,15 @@
             "CaCertPath": "/Users/ayaanh3/.docker/machine/certs/ca.pem",
             "CaPrivateKeyPath": "/Users/ayaanh3/.docker/machine/certs/ca-key.pem",
             "CaCertRemotePath": "",
-            "ServerCertPath": "/Users/ayaanh3/.docker/machine/machines/dronuts2021-team7b/server.pem",
-            "ServerKeyPath": "/Users/ayaanh3/.docker/machine/machines/dronuts2021-team7b/server-key.pem",
+            "ServerCertPath": "/Users/ayaanh3/.docker/machine/machines/dronuts2021-team7/server.pem",
+            "ServerKeyPath": "/Users/ayaanh3/.docker/machine/machines/dronuts2021-team7/server-key.pem",
             "ClientKeyPath": "/Users/ayaanh3/.docker/machine/certs/key.pem",
             "ServerCertRemotePath": "",
             "ServerKeyRemotePath": "",
             "ClientCertPath": "/Users/ayaanh3/.docker/machine/certs/cert.pem",
             "ServerCertSANs": [],
-            "StorePath": "/Users/ayaanh3/.docker/machine/machines/dronuts2021-team7b"
+            "StorePath": "/Users/ayaanh3/.docker/machine/machines/dronuts2021-team7"
         }
     },
-    "Name": "dronuts2021-team7b"
+    "Name": "dronuts2021-team7"
 }
