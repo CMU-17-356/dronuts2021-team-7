@@ -9,9 +9,9 @@ services:
 env:
   global:
     - DOCKER_TLS_VERIFY="1"
-    - DOCKER_HOST="tcp://168.62.204.213:2376"
+    - DOCKER_HOST="tcp://104.42.227.15:2376"
     - DOCKER_CERT_PATH="$TRAVIS_BUILD_DIR/azure"
-    - DOCKER_MACHINE_NAME="dronuts2021-team-7"
+    - DOCKER_MACHINE_NAME="dronuts2021-team-7b"
 
 script:
   - npm install
