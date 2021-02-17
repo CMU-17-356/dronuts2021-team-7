@@ -13,4 +13,4 @@ COPY . .
 #TODO Run any build scripts here
 
 EXPOSE 80
-CMD [ "node", "app.js" ]
+CMD [ "npm", "start" ]
