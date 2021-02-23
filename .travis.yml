@@ -1,7 +1,7 @@
 language: node_js
 node_js:
   - "node"
-dist: xenial  
+dist: xenial
 sudo: required
 services:
   - docker
@@ -9,7 +9,7 @@ services:
 env:
   global:
     - DOCKER_TLS_VERIFY="1"
-    - DOCKER_HOST="tcp://52.160.65.48:2376"
+    - DOCKER_HOST="tcp://40.83.177.4:2376"
     - DOCKER_CERT_PATH="$TRAVIS_BUILD_DIR/azure"
     - DOCKER_MACHINE_NAME="dronuts2021-team-7"
 
