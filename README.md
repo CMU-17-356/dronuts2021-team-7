@@ -27,7 +27,7 @@ npm start
 
 You can also run `node .` to skip the build step.
 
-Open http://52.160.65.48 in your browser.
+Open http://40.83.177.4 in your browser.
 
 ## Rebuild the project
 
