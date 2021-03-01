@@ -62,3 +62,12 @@ typings/
 
 # Cache used by TypeScript's incremental build
 *.tsbuildinfo
+
+# vs code files
+.vscode
+
+# Mac files
+.DS_Store
+
+# vim undo files
+*.un~
