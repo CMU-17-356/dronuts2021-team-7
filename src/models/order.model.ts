@@ -13,8 +13,9 @@ export class Order extends Entity {
   @property({
     type: 'date',
     required: true,
+    jsonSchema: {},
   })
-  date: string;
+  date: Date;
 
   @property({
     type: 'number',
@@ -28,6 +29,11 @@ export class Order extends Entity {
     type: 'number',
   })
   droneId?: number;
+
+  @property({
+    type: 'number',
+  })
+  employeeAssigned?: number;
 
   constructor(data?: Partial<Order>) {
     super(data);

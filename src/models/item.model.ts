@@ -13,24 +13,36 @@ export class Item extends Entity {
   @property({
     type: 'string',
     required: true,
+    jsonSchema: {
+      minLength: 1,
+    },
   })
   name: string;
 
   @property({
     type: 'string',
     required: true,
+    jsonSchema: {
+      minLength: 1,
+    },
   })
   description: string;
 
   @property({
     type: 'number',
     required: true,
+    jsonSchema: {
+      minimum: 0,
+    },
   })
   price: number;
 
   @property({
     type: 'number',
     required: true,
+    jsonSchema: {
+      minimum: 0,
+    },
   })
   qtyAvailable: number;
 
