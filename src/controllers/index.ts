@@ -3,3 +3,4 @@ export * from './drone-order.controller';
 export * from './item-order-item.controller';
 export * from './order-order-item.controller';
 export * from './ping.controller';
+export * from './employee-order.controller';

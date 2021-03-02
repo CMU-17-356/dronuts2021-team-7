@@ -4,12 +4,6 @@ import {Entity, model, property} from '@loopback/repository';
 export class OrderItem extends Entity {
   @property({
     type: 'number',
-    required: true,
-  })
-  quantity: number;
-
-  @property({
-    type: 'number',
     id: true,
     generated: true,
   })
@@ -17,13 +11,22 @@ export class OrderItem extends Entity {
 
   @property({
     type: 'number',
+    required: true,
+    jsonSchema: {
+      minimum: 1,
+    },
   })
-  orderId: number;
+  quantity: number;
 
   @property({
     type: 'number',
   })
   itemId: number;
+
+  @property({
+    type: 'number',
+  })
+  orderId: number;
 
   constructor(data?: Partial<OrderItem>) {
     super(data);
