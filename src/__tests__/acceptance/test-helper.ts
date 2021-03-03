@@ -9,8 +9,8 @@ export async function setupApplication(): Promise<AppWithClient> {
     // Customize the server configuration here.
     // Empty values (undefined, '') will be ignored by the helper.
     //
-    // host: process.env.HOST,
-    // port: +(process.env.PORT ?? 8080),
+    host: 127.0.0.1,
+    port: 8080,
   });
 
   const app = new Dronuts2021Team7Application({
