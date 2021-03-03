@@ -1,9 +1,8 @@
-import {Dronuts2021Team7Application} from '../..';
 import {
-  createRestAppClient,
-  givenHttpServerConfig,
-  Client,
+  Client, createRestAppClient,
+  givenHttpServerConfig
 } from '@loopback/testlab';
+import {Dronuts2021Team7Application} from '../..';
 
 export async function setupApplication(): Promise<AppWithClient> {
   const restConfig = givenHttpServerConfig({
@@ -11,7 +10,7 @@ export async function setupApplication(): Promise<AppWithClient> {
     // Empty values (undefined, '') will be ignored by the helper.
     //
     // host: process.env.HOST,
-    // port: +process.env.PORT,
+    port: 3000,
   });
 
   const app = new Dronuts2021Team7Application({
