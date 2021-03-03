@@ -33,6 +33,11 @@ export class Order extends Entity {
   @property({
     type: 'number',
   })
+  deliveryAddressId: number;
+
+  @property({
+    type: 'number',
+  })
   employeeAssigned?: number;
 
   constructor(data?: Partial<Order>) {

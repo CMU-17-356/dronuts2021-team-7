@@ -13,7 +13,7 @@ export class OrderItem extends Entity {
     type: 'number',
     required: true,
     jsonSchema: {
-      minimum: 1,
+      minimum: 0,
     },
   })
   quantity: number;

@@ -1,4 +1,4 @@
-import {Entity, model, property, hasOne} from '@loopback/repository';
+import {Entity, hasOne, model, property} from '@loopback/repository';
 import {Order} from './order.model';
 
 @model()
@@ -8,7 +8,7 @@ export class Drone extends Entity {
     id: true,
     generated: true,
   })
-  id?: number;
+  id: number;
 
   @hasOne(() => Order)
   order: Order;
