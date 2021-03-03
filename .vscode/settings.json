@@ -28,5 +28,7 @@
   "eslint.validate": [
     "javascript",
     "typescript"
-  ]
+  ],
+  "appService.defaultWebAppToDeploy": "/subscriptions/2e61d3ca-affc-4466-9f8f-822e2cdf7d92/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/dronuts",
+  "appService.deploySubpath": "."
 }
