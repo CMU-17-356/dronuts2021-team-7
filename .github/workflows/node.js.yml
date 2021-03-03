@@ -18,8 +18,17 @@ jobs:
       postgres:
         image: postgres
         env:
+<<<<<<< HEAD
+          POSTGRES_PASSWORD: 'postgres'
+<<<<<<< HEAD
+        option: >-
+=======
           POSTGRES_PASSWORD: postgres
         options: >-
+>>>>>>> ac6bb67951adba9d3f80cba22efc625f6912f4aa
+=======
+        options: >-
+>>>>>>> model_tests
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
@@ -27,7 +36,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x, 15.x]
+        node-version: [14.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
