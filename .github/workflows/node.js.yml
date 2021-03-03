@@ -19,7 +19,7 @@ jobs:
         image: postgres
         env:
           POSTGRES_PASSWORD: 'postgres'
-        option: >-
+        options: >-
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
