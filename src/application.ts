@@ -17,7 +17,6 @@ export class Dronuts2021Team7Application extends BootMixin(
 ) {
   constructor(options: ApplicationConfig = {}) {
     super(options);
-
     // Set up the custom sequence
     this.sequence(MySequence);
 

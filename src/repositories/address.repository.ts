@@ -1,33 +1,14 @@
-import {inject, Getter} from '@loopback/core';
-import {
-  DefaultCrudRepository,
-  repository,
-  HasManyRepositoryFactory,
-} from '@loopback/repository';
-import {DatasourceDataSource} from '../datasources';
-import {Address, AddressRelations, Order} from '../models';
-import {OrderRepository} from './order.repository';
+import {inject} from '@loopback/core';
+import {DefaultCrudRepository} from '@loopback/repository';
+import {NewDataSource} from '../datasources';
+import {Address, AddressRelations} from '../models';
 
 export class AddressRepository extends DefaultCrudRepository<
   Address,
   typeof Address.prototype.id,
   AddressRelations
 > {
-  public readonly orders: HasManyRepositoryFactory<
-    Order,
-    typeof Address.prototype.id
-  >;
-
-  constructor(
-    @inject('datasources.datasource') dataSource: DatasourceDataSource,
-    @repository.getter('OrderRepository')
-    protected orderRepositoryGetter: Getter<OrderRepository>,
-  ) {
+  constructor(@inject('datasources.new') dataSource: NewDataSource) {
     super(Address, dataSource);
-    this.orders = this.createHasManyRepositoryFactoryFor(
-      'orders',
-      orderRepositoryGetter,
-    );
-    this.registerInclusionResolver('orders', this.orders.inclusionResolver);
   }
 }

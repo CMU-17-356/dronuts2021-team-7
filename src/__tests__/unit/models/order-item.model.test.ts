@@ -1,9 +1,8 @@
 import {expect} from '@loopback/testlab';
 import {OrderItem} from '../../../models';
 
-
 describe('Order-Item (unit)', () => {
-  const cust = new OrderItem({id: 1, quantity: 3, orderId: 1, itemId: 1})
+  const cust = new OrderItem({id: 1, quantity: 3, orderId: 1, itemId: 1});
   it('stores id correctly', () => {
     expect(cust.id).to.equal(1);
   });
