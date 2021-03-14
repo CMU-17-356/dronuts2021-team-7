@@ -1,46 +1,77 @@
-import logo from './logo.png';
-import './App.css';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import React, { useEffect, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-      width: '25ch',
-    },
-  },
-  button: {
-    margin: theme.spacing(1),
-    borderRadius: "5em",
-  },
-}));
+import Home from './views/Home';
+import Menu from './views/Menu';
+import Orders from './views/Orders';
 
-function App() {
-  const classes = useStyles();
+import DronutContextProvider from './contexts/DronutContext';
+
+export default function App() {
+  const [address, setAddress] = useState('');
+  const [cart, setCart] = useState([0]);
+  const [orders, setOrders] = useState([]);
+
+  const updateAddress = (e) => setAddress(e.target.value);
+  const increment = (id) => {
+    var newCart = []
+    cart.forEach(i => newCart.push(i));
+    newCart[id]++;
+    setCart(newCart);
+  }
+  const decrement = (id) => {
+    if (cart[id] > 0) {
+      var newCart = []
+      cart.forEach(i => newCart.push(i));
+      newCart[id]--;
+      setCart(newCart);
+    }
+  }
+
+  console.log(address);
+  console.log(cart);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <form className={classes.root} noValidate autoComplete="off">
-          <TextField id="address" label="Enter your address to get started" />
-        </form>
-        <Button variant="outlined" className={classes.button} color="secondary">
-          Start ordering
-        </Button>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Already ordered?
-        </a>
-      </header>
-    </div>
+    <DronutContextProvider value={{address, updateAddress, cart, increment, decrement, orders}}>
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/menu">Menu</Link>
+            </li>
+            <li>
+              <Link to="/orders">Orders</Link>
+            </li>
+          </ul>
+        </nav>
+
+        
+          {/* A <Switch> looks through its children <Route>s and
+              renders the first one that matches the current URL. */}
+          <Switch>
+            <Route path="/menu">
+              <Menu />
+            </Route>
+            <Route path="/orders">
+              <Orders />
+            </Route>
+            <Route path="/">
+            
+              <Home />
+             
+            </Route>
+          </Switch>
+      </div>
+    </Router>
+    </DronutContextProvider>
   );
 }
-
-export default App;
