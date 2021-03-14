@@ -11,6 +11,9 @@ import Menu from './views/Menu';
 import Orders from './views/Orders';
 
 import DronutContextProvider from './contexts/DronutContext';
+import curlirize from 'axios-curlirize';
+
+const axios = require('axios').default;
 
 export default function App() {
   const [address, setAddress] = useState('');
