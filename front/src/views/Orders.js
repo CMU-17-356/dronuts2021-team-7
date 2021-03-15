@@ -1,6 +1,5 @@
 import AxiosCurlirize from 'axios-curlirize';
 import { Component } from 'react';
-import Async from 'react-async';
 
 const axios = require('axios').default;
 const instance = axios.create({
@@ -10,9 +9,6 @@ AxiosCurlirize(instance);
 let pl = {companyId : "team_7", 
 amount: 9}
 
-
-
-
 class Orders extends Component{
 
   constructor(){
@@ -20,13 +16,12 @@ class Orders extends Component{
     this.state = {
       isLoaded: false,
       items: [],
-      error: null
+      error: null,
+      
+      paidc: false,
+      paid: []
     };
   }
-
-  // componentDidMount(){
-  //   this.getData();
-  //  }
 
    componentDidMount() {
     instance.post('transactions',pl)
@@ -51,16 +46,63 @@ class Orders extends Component{
       )
   }
 
+  getStatus(id) {
+    instance.get('transactions/'+id)
+      .then(res => res.data)
+      .then(
+        (result) => {
+          console.log(result.status)
+          if(result.status === 'pending'){
+            this.setState({
+              paid: result,
+              paidc: false
+            });
+          }
+          else if(result.status === 'approved') {
+          this.setState({
+            paid: result,
+            paidc: true
+          });}
+          else if(result.status === 'denied'){
+            this.setState({
+              paid: result,
+              paidc: true
+            });}
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            error
+          });
+        }
+      )
+  }
+
   render() {
-    const { error, isLoaded, items } = this.state;
+    const { error, isLoaded, items,paidc,paid } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
       return <div>Loading...</div>;
     } else {
+      if(!paidc){
+      // this.getStatus(items.id)
+    console.log(paid)
+    }
+
       return (
         <ul>
-          {items.id}
+          Order ID: 0<hr/>
+          <button
+    type="button"
+    onClick={(e) => {
+      e.preventDefault();
+      window.location.href='/process';
+      window.open("http://credit.17-356.isri.cmu.edu/?transaction_id="+items.id, '_blank');
+      }}
+> Pay Now</button>
         </ul>
       );
     }
