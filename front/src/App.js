@@ -12,10 +12,17 @@ import Orders from './views/Orders';
 
 import DronutContextProvider from './contexts/DronutContext';
 
+const menu = [
+  {
+    price: 2
+  }
+]
+
 export default function App() {
   const [address, setAddress] = useState('');
   const [cart, setCart] = useState([0]);
   const [orders, setOrders] = useState([]);
+  const [total, setTotal] = useState(0);
 
   const updateAddress = (e) => setAddress(e.target.value);
   const increment = (id) => {
@@ -33,11 +40,20 @@ export default function App() {
     }
   }
 
+  useEffect(() => {
+    var subtotal = 0;
+    for (var i = 0; i < cart.length; i++) {
+      subtotal += cart[i] * menu[i].price;
+    }
+    setTotal(subtotal);
+  }, [cart])
+
   console.log(address);
   console.log(cart);
+  console.log(total);
 
   return (
-    <DronutContextProvider value={{address, updateAddress, cart, increment, decrement, orders}}>
+    <DronutContextProvider value={{address, updateAddress, cart, increment, decrement, orders, total}}>
     <Router>
       <div>
         <nav>
@@ -54,7 +70,7 @@ export default function App() {
           </ul>
         </nav>
 
-        
+
           {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
           <Switch>
@@ -65,9 +81,9 @@ export default function App() {
               <Orders />
             </Route>
             <Route path="/">
-            
+
               <Home />
-             
+
             </Route>
           </Switch>
       </div>

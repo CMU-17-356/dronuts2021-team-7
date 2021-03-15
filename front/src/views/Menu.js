@@ -7,7 +7,7 @@ import { DronutContext } from '../contexts/DronutContext';
 
 export default function Menu() {
 
-  const { address } = useContext(DronutContext);
+  const { address, total } = useContext(DronutContext);
 
   const donuts = [
     {
