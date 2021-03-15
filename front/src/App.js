@@ -9,6 +9,7 @@ import {
 import Home from './views/Home';
 import Menu from './views/Menu';
 import Orders from './views/Orders';
+import Processing from './views/Processing';
 
 import DronutContextProvider from './contexts/DronutContext';
 import curlirize from 'axios-curlirize';
@@ -54,6 +55,9 @@ export default function App() {
             <li>
               <Link to="/orders">Orders</Link>
             </li>
+            <li>
+              <Link to="/process">Process</Link>
+            </li>
           </ul>
         </nav>
 
@@ -61,6 +65,9 @@ export default function App() {
           {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
           <Switch>
+            <Route path='/process'>
+              <Processing />
+            </Route>
             <Route path="/menu">
               <Menu />
             </Route>
