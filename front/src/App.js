@@ -55,9 +55,6 @@ export default function App() {
             <li>
               <Link to="/orders">Orders</Link>
             </li>
-            <li>
-              <Link to="/process">Process</Link>
-            </li>
           </ul>
         </nav>
 
@@ -65,9 +62,7 @@ export default function App() {
           {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
           <Switch>
-            <Route path='/process'>
-              <Processing />
-            </Route>
+          <Route path='/process/:id' render={(props) => <Processing {...props}/>}/>
             <Route path="/menu">
               <Menu />
             </Route>

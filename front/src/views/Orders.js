@@ -17,9 +17,6 @@ class Orders extends Component{
       isLoaded: false,
       items: [],
       error: null,
-      
-      paidc: false,
-      paid: []
     };
   }
 
@@ -46,40 +43,6 @@ class Orders extends Component{
       )
   }
 
-  getStatus(id) {
-    instance.get('transactions/'+id)
-      .then(res => res.data)
-      .then(
-        (result) => {
-          console.log(result.status)
-          if(result.status === 'pending'){
-            this.setState({
-              paid: result,
-              paidc: false
-            });
-          }
-          else if(result.status === 'approved') {
-          this.setState({
-            paid: result,
-            paidc: true
-          });}
-          else if(result.status === 'denied'){
-            this.setState({
-              paid: result,
-              paidc: true
-            });}
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            error
-          });
-        }
-      )
-  }
-
   render() {
     const { error, isLoaded, items,paidc,paid } = this.state;
     if (error) {
@@ -87,11 +50,6 @@ class Orders extends Component{
     } else if (!isLoaded) {
       return <div>Loading...</div>;
     } else {
-      if(!paidc){
-      // this.getStatus(items.id)
-    console.log(paid)
-    }
-
       return (
         <ul>
           Order ID: 0<hr/>
@@ -99,10 +57,9 @@ class Orders extends Component{
     type="button"
     onClick={(e) => {
       e.preventDefault();
-      window.location.href='/process';
+      window.location.href='/process/'+items.id;
       window.open("http://credit.17-356.isri.cmu.edu/?transaction_id="+items.id, '_blank');
-      }}
-> Pay Now</button>
+      }}>Pay Now</button>
         </ul>
       );
     }
