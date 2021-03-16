@@ -7,23 +7,23 @@ import {
   Where,
 } from '@loopback/repository';
 import {
-  del,
+  post,
+  param,
   get,
   getModelSchemaRef,
-  param,
   patch,
-  post,
   put,
+  del,
   requestBody,
   response,
 } from '@loopback/rest';
 import {Order} from '../models';
 import {OrderRepository} from '../repositories';
 
-export class OrdersController {
+export class OrderController {
   constructor(
     @repository(OrderRepository)
-    public orderRepository: OrderRepository,
+    public orderRepository : OrderRepository,
   ) {}
 
   @post('/orders')
@@ -37,11 +37,12 @@ export class OrdersController {
         'application/json': {
           schema: getModelSchemaRef(Order, {
             title: 'NewOrder',
+            exclude: ['id'],
           }),
         },
       },
     })
-    order: Order,
+    order: Omit<Order, 'id'>,
   ): Promise<Order> {
     return this.orderRepository.create(order);
   }
@@ -51,7 +52,9 @@ export class OrdersController {
     description: 'Order model count',
     content: {'application/json': {schema: CountSchema}},
   })
-  async count(@param.where(Order) where?: Where<Order>): Promise<Count> {
+  async count(
+    @param.where(Order) where?: Where<Order>,
+  ): Promise<Count> {
     return this.orderRepository.count(where);
   }
 
@@ -67,7 +70,9 @@ export class OrdersController {
       },
     },
   })
-  async find(@param.filter(Order) filter?: Filter<Order>): Promise<Order[]> {
+  async find(
+    @param.filter(Order) filter?: Filter<Order>,
+  ): Promise<Order[]> {
     return this.orderRepository.find(filter);
   }
 
@@ -101,8 +106,7 @@ export class OrdersController {
   })
   async findById(
     @param.path.number('id') id: number,
-    @param.filter(Order, {exclude: 'where'})
-    filter?: FilterExcludingWhere<Order>,
+    @param.filter(Order, {exclude: 'where'}) filter?: FilterExcludingWhere<Order>
   ): Promise<Order> {
     return this.orderRepository.findById(id, filter);
   }
