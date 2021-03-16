@@ -81,7 +81,7 @@ export default function App() {
   const [address, setAddress] = useState('');
   const [cart, setCart] = useState([0,0,0,0,0,0,0,0,0]);
   const [coordinates, setCoordinates] = useState({});
-  const [orders, setOrders] = useState([{0:1,1:1,2:1,3:1,4:1,5:1,6:1,7:1,8:1}]);
+  const [orders, setOrders] = useState([{0:1,1:1,2:1,3:1,4:1,5:1,6:1,7:1,8:1,address:'5000 Forbes Ave, Pittsburgh, PA 15213'}]);
   const [orderID, setOrderID] = useState(0);
   const [total, setTotal] = useState(0);
 
@@ -91,7 +91,7 @@ export default function App() {
     console.log("updating orders")
     var newOrders = [];
     orders.forEach(o => newOrders.push(o));
-    newOrders.push({0:cart[0], 1:cart[1], 2:cart[2], 3:cart[3], 4:cart[4], 5:cart[5], 6:cart[6], 7:cart[7], 8:cart[8]})
+    newOrders.push({0:cart[0], 1:cart[1], 2:cart[2], 3:cart[3], 4:cart[4], 5:cart[5], 6:cart[6], 7:cart[7], 8:cart[8], address:address})
     setOrders(newOrders);
     updateOrderID(orders.length);
   }
