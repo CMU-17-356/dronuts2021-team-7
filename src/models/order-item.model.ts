@@ -18,15 +18,6 @@ export class OrderItem extends Entity {
   })
   quantity: number;
 
-  @property({
-    type: 'number',
-  })
-  itemId: number;
-
-  @property({
-    type: 'number',
-  })
-  orderId: number;
 
   constructor(data?: Partial<OrderItem>) {
     super(data);

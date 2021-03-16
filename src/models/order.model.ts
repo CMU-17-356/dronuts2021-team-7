@@ -1,5 +1,4 @@
-import {Entity, hasMany, model, property} from '@loopback/repository';
-import {OrderItem} from './order-item.model';
+import {Entity, model, property} from '@loopback/repository';
 
 @model()
 export class Order extends Entity {
@@ -16,29 +15,6 @@ export class Order extends Entity {
     jsonSchema: {},
   })
   date: Date;
-
-  @property({
-    type: 'number',
-  })
-  customerId: number;
-
-  @hasMany(() => OrderItem)
-  orderItems: OrderItem[];
-
-  @property({
-    type: 'number',
-  })
-  droneId?: number;
-
-  @property({
-    type: 'number',
-  })
-  deliveryAddressId: number;
-
-  @property({
-    type: 'number',
-  })
-  employeeAssigned?: number;
 
   constructor(data?: Partial<Order>) {
     super(data);
