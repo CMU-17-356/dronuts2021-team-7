@@ -37,7 +37,10 @@ export default function Home() {
                 <div><img className="App-logo" src={logo} alt='logo'/></div>
                 {/* <div><TextField className={classes.root} label='Enter your address to get started' value={address} onChange={e => updateAddress(e)}></TextField></div> */}
                 <Search updateAddress={updateAddress} updateCoordinates={updateCoordinates} />
-                <div><Button variant="outlined" className={classes.button} color="secondary" component={ Link } to='/menu'>Start ordering</Button></div>
+                <div>{address.length == 0 ? 
+                <Button variant="outlined" className={classes.button} color="secondary" component={ Link } to='/menu' disabled>Start ordering</Button> : 
+                <Button variant="outlined" className={classes.button} color="secondary" component={ Link } to='/menu'>Start ordering</Button>}
+                </div>
                 <div><Link className="App-link" to="/order">Already ordered?</Link></div>
                 
             </header>
