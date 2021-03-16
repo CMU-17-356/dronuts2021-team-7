@@ -7,6 +7,14 @@ import SearchBar from 'material-ui-search-bar';
 // Import React Scrit Libraray to load Google object
 import Script from 'react-load-script';
 
+import Geocode from "react-geocode";
+
+// set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
+Geocode.setApiKey("AIzaSyDFPwqB5cwmPTDpe3OCfkH1itg-2_DeNkA");
+
+// set response language. Defaults to english.
+Geocode.setLanguage("en");
+
 class Search extends Component {
   // Define Constructor
   constructor(props) {
@@ -14,17 +22,13 @@ class Search extends Component {
 
     // Declare State
     this.state = {
-      // city: '',
-      query: ''
+      query: '',
+      coordinates: {}
     };
 
   }
 
   handleScriptLoad = () => {
-    // Declare Options For Autocomplete
-    const options = {
-      types: ['(cities)'],
-    };
 
     // Initialize Google Autocomplete
     /*global google*/ // To disable any eslint 'google not defined' errors
@@ -49,19 +53,27 @@ class Search extends Component {
 
     // Check if address is valid
     if (address) {
-      // Set State
-      this.setState(
-        {
-          // city: address[0].long_name,
-          query: addressObject.formatted_address,
-        }
-      );
-      this.props.updateAddress(this.state.query);
+          Geocode.fromAddress(address).then(
+            (response) => {
+              const { lat, lng } = response.results[0].geometry.location;
+              this.setState(
+                {
+                  // city: address[0].long_name,
+                  query: addressObject.formatted_address,
+                  coordinates: {lat, lng}
+                }
+              );
+              this.props.updateAddress(this.state.query);
+              this.props.updateCoordinates(this.state.coordinates);
+            },
+            (error) => {
+              console.error(error);
+            }
+          );
     }
   }
 
   render() {
-    console.log(this.state.query);
     return (
       <div>
         <Script

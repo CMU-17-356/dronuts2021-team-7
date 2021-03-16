@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     maxWidth: 420,
-    margin: theme.spacing(1)
+    margin: theme.spacing(5)
   },
   details: {
     display: 'flex',
@@ -47,7 +47,6 @@ const useStyles = makeStyles((theme) => ({
 export default function MenuItem(props) {
   
   const classes = useStyles();
-  const theme = useTheme();
 
   const { cart, increment, decrement } = useContext(DronutContext);
 

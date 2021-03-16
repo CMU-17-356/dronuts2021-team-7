@@ -30,13 +30,13 @@ export default function Home() {
 
     const [value, setValue] = useState(null);
 
-    const {address, updateAddress} = useContext(DronutContext);
+    const {address, updateAddress, updateCoordinates} = useContext(DronutContext);
     return (
         <div>
             <header className="App-header">
                 <div><img className="App-logo" src={logo} alt='logo'/></div>
                 {/* <div><TextField className={classes.root} label='Enter your address to get started' value={address} onChange={e => updateAddress(e)}></TextField></div> */}
-                <Search updateAddress={updateAddress}/>
+                <Search updateAddress={updateAddress} updateCoordinates={updateCoordinates} />
                 <div><Button variant="outlined" className={classes.button} color="secondary" component={ Link } to='/menu'>Start ordering</Button></div>
                 <div><Link className="App-link" to="/orders">Already ordered?</Link></div>
                 

@@ -29,8 +29,10 @@ export default function App() {
   const [cart, setCart] = useState([0,0,0]);
   const [orders, setOrders] = useState([]);
   const [total, setTotal] = useState(0);
+  const [coordinates, setCoordinates] = useState({});
 
   const updateAddress = (e) => setAddress(e);
+  const updateCoordinates = (e) => setCoordinates(e);
   const increment = (id) => {
     var newCart = []
     cart.forEach(i => newCart.push(i));
@@ -55,11 +57,12 @@ export default function App() {
   }, [cart])
 
   console.log(address);
+  console.log(coordinates);
   console.log(cart);
   console.log(total);
 
   return (
-    <DronutContextProvider value={{address, updateAddress, cart, increment, decrement, orders}}>
+    <DronutContextProvider value={{address, updateAddress, cart, increment, decrement, orders, coordinates, updateCoordinates}}>
     <Router>
       <div>
           {/* A <Switch> looks through its children <Route>s and
