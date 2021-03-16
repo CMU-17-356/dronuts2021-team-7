@@ -15,12 +15,18 @@ import DronutContextProvider from './contexts/DronutContext';
 const menu = [
   {
     price: 2
-  }
+  },
+  {
+    price: 2
+  },
+  {
+    price: 2
+  },
 ]
 
 export default function App() {
   const [address, setAddress] = useState('');
-  const [cart, setCart] = useState([0]);
+  const [cart, setCart] = useState([0,0,0]);
   const [orders, setOrders] = useState([]);
   const [total, setTotal] = useState(0);
 
