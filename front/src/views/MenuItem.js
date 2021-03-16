@@ -45,8 +45,6 @@ export default function MenuItem(props) {
 
   const { cart, increment, decrement } = useContext(DronutContext);
 
-  console.log(!props.quantity);
-
   return (
     <Grid item xs={4}>
           <Card className={classes.root}>

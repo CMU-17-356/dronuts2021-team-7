@@ -38,7 +38,7 @@ const donuts = [
 export default function App() {
   const [address, setAddress] = useState('');
   const [cart, setCart] = useState([0,0,0]);
-  const [orders, setOrders] = useState([[1,1,0]]);
+  const [orders, setOrders] = useState([{0:1,1:1,2:1}]);
   const [total, setTotal] = useState(0);
   const [coordinates, setCoordinates] = useState({});
 
@@ -47,7 +47,7 @@ export default function App() {
   const updateOrders = () => {
     var newOrders = [];
     orders.forEach(o => newOrders.push(o));
-    newOrders.push(new Array(cart[0], cart[1], cart[2]))
+    newOrders.push({0:cart[0], 1:cart[1], 2:cart[2]})
     setOrders(newOrders);
   }
   const increment = (id) => {

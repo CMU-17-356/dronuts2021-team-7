@@ -33,7 +33,9 @@ export default function Order() {
   const classes = useStyles();
   const {donuts, orders} = useContext(DronutContext);
 
-  const [q0, q1, q2] = orders[0]
+  const q0 = orders[0][0]
+  const q1 = orders[0][1]
+  const q2 = orders[0][2]
 
   return (
     <div>
