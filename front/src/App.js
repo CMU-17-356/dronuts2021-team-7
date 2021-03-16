@@ -18,9 +18,6 @@ import donut5 from './donut5.jpg'
 import donut6 from './donut6.jpg'
 import donut7 from './donut7.jpg'
 import donut8 from './donut8.jpg'
-import donut9 from './donut9.jpg'
-import donut10 from './donut10.jpg'
-import donut11 from './donut11.jpg'
 import DronutContextProvider from './contexts/DronutContext';
 
 const donuts = [
@@ -78,31 +75,13 @@ const donuts = [
     image: donut8,
     price: 2,
   },
-  {
-    id: 9,
-    name: 'Powered Sugar Donut',
-    image: donut9,
-    price: 2,
-  },
-  {
-    id: 10,
-    name: 'Strawberry-Frosted Donut',
-    image: donut10,
-    price: 2,
-  },
-  {
-    id: 11,
-    name: 'Vanilla-Frosted Donut',
-    image: donut11,
-    price: 2,
-  },
 ]
 
 export default function App() {
   const [address, setAddress] = useState('');
-  const [cart, setCart] = useState([0,0,0]);
+  const [cart, setCart] = useState([0,0,0,0,0,0,0,0,0]);
   const [coordinates, setCoordinates] = useState({});
-  const [orders, setOrders] = useState([{0:1,1:1,2:1}]);
+  const [orders, setOrders] = useState([{0:1,1:1,2:1,3:1,4:1,5:1,6:1,7:1,8:1}]);
   const [orderID, setOrderID] = useState(0);
   const [total, setTotal] = useState(0);
 
@@ -112,7 +91,7 @@ export default function App() {
     console.log("updating orders")
     var newOrders = [];
     orders.forEach(o => newOrders.push(o));
-    newOrders.push({0:cart[0], 1:cart[1], 2:cart[2]})
+    newOrders.push({0:cart[0], 1:cart[1], 2:cart[2], 3:cart[3], 4:cart[4], 5:cart[5], 6:cart[6], 7:cart[7], 8:cart[8]})
     setOrders(newOrders);
     updateOrderID(orders.length);
   }

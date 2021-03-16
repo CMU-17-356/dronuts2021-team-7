@@ -58,9 +58,9 @@ export default function MenuItem(props) {
           </Typography>
         </CardContent>
         <div className={classes.controls}>
-          {props.quantity == null && <IconButton aria-label="previous" onClick={()=>{decrement(props.donut.id)}}>-</IconButton>}
-          {props.quantity ? props.quantity : cart[props.donut.id]} units
-          {props.quantity == null && <IconButton aria-label="previous" onClick={()=>{increment(props.donut.id)}}>+</IconButton>}
+          {props.quantity == null && <IconButton aria-label="previous" color="secondary" variant="contained" onClick={()=>{decrement(props.donut.id)}}>-</IconButton>}
+          {props.quantity ? props.quantity : cart[props.donut.id]}
+          {props.quantity == null && <IconButton aria-label="previous" color="secondary" variant="contained" onClick={()=>{increment(props.donut.id)}}>+</IconButton>}
         </div>
       </div>
       <CardMedia
