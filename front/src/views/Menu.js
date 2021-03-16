@@ -1,20 +1,21 @@
 import React, {useContext} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
-
 import { Link } from "react-router-dom";
+import { makeStyles } from '@material-ui/core/styles';
+import {
+  AppBar, 
+  Button,
+  Grid,
+  Paper,
+  Toolbar,
+  Typography
+} from '@material-ui/core';
 
 import MenuItem from './MenuItem';
-
+import { DronutContext } from '../contexts/DronutContext';
 import donut0 from '../donut0.jpg'
 import donut1 from '../donut1.jpg'
 import donut2 from '../donut2.jpg'
 import logo from '../logo.png';
-
-import { DronutContext } from '../contexts/DronutContext';
 
 const donuts = [
   {
@@ -25,7 +26,7 @@ const donuts = [
   },
   {
     id: 1,
-    name: 'Old- Fashioned Donut',
+    name: 'Old-Fashioned Donut',
     image: donut1,
     price: 2,
   },
@@ -71,9 +72,9 @@ export default function Menu() {
       </Toolbar>
     </AppBar>
 
-    <div></div>
-    <div></div>
-    {donuts.map(donut => <MenuItem donut={donut}/>)}
+    <Grid container spacing={3}>
+      {donuts.map(donut => <MenuItem donut={donut}/>)}
+    </Grid>
     <Button variant="contained" className={classes.root} color="secondary" component={ Link } to='/orders'>Pay</Button>
   </div>
   );
