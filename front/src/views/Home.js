@@ -14,7 +14,7 @@ export default function Home() {
         <div>
             <div><img src={logo} alt='logo'/></div>
             <div><TextField label='Enter your address to get started' value={address} onChange={e => updateAddress(e)}></TextField></div>
-            <div><Button href='/menu'>Start ordering</Button></div>
+            <div><Button component={ Link } to='/menu'>Start ordering</Button></div>
             <div><Link to="/orders">Already ordered?</Link></div>
         </div>
     )
