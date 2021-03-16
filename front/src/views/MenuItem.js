@@ -5,15 +5,15 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import SkipNextIcon from '@material-ui/icons/SkipNext';
+// import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
+// import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+// import SkipNextIcon from '@material-ui/icons/SkipNext';
 
 import { DronutContext } from '../contexts/DronutContext';
 
-import donut0 from '../donut0.jpg'
-import donut1 from '../donut1.jpg'
-import donut2 from '../donut2.jpg'
+// import donut0 from '../donut0.jpg'
+// import donut1 from '../donut1.jpg'
+// import donut2 from '../donut2.jpg'
 
 const useStyles = makeStyles((theme) => ({
   root: {
