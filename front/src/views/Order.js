@@ -11,6 +11,7 @@ import {
 } from '@material-ui/core';
 
 import MenuItem from './MenuItem';
+import Map from './Map';
 import { DronutContext } from '../contexts/DronutContext';
 import logo from '../logo.png';
 import SearchBar from 'material-ui-search-bar';
@@ -82,6 +83,7 @@ export default function Order() {
         {q7>0 && <MenuItem donut={donuts[7]} quantity={q7} units={true} />}
         {q8>0 && <MenuItem donut={donuts[8]} quantity={q8} units={true} />}
       </Grid>
+      <Map />
     </div>
   );
 }
