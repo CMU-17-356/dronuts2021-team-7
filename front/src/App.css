@@ -8,7 +8,6 @@
 }
 
 .App-header {
-  background-color: #FFFFFF;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -19,9 +18,5 @@
 }
 
 .App-link {
-  color: #c4c4c4;
-}
-
-.rounded-rect {
-  border-radius: 8px;
+  color: #61dafb;
 }
