@@ -23,7 +23,7 @@ import {CustomerRepository} from '../repositories';
 export class CustomerController {
   constructor(
     @repository(CustomerRepository)
-    public customerRepository : CustomerRepository,
+    public customerRepository: CustomerRepository,
   ) {}
 
   @post('/customers')
@@ -52,9 +52,7 @@ export class CustomerController {
     description: 'Customer model count',
     content: {'application/json': {schema: CountSchema}},
   })
-  async count(
-    @param.where(Customer) where?: Where<Customer>,
-  ): Promise<Count> {
+  async count(@param.where(Customer) where?: Where<Customer>): Promise<Count> {
     return this.customerRepository.count(where);
   }
 
@@ -106,7 +104,8 @@ export class CustomerController {
   })
   async findById(
     @param.path.number('id') id: number,
-    @param.filter(Customer, {exclude: 'where'}) filter?: FilterExcludingWhere<Customer>
+    @param.filter(Customer, {exclude: 'where'})
+    filter?: FilterExcludingWhere<Customer>,
   ): Promise<Customer> {
     return this.customerRepository.findById(id, filter);
   }

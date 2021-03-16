@@ -23,7 +23,7 @@ import {AddressRepository} from '../repositories';
 export class AddressController {
   constructor(
     @repository(AddressRepository)
-    public addressRepository : AddressRepository,
+    public addressRepository: AddressRepository,
   ) {}
 
   @post('/addresses')
@@ -52,9 +52,7 @@ export class AddressController {
     description: 'Address model count',
     content: {'application/json': {schema: CountSchema}},
   })
-  async count(
-    @param.where(Address) where?: Where<Address>,
-  ): Promise<Count> {
+  async count(@param.where(Address) where?: Where<Address>): Promise<Count> {
     return this.addressRepository.count(where);
   }
 
@@ -106,7 +104,8 @@ export class AddressController {
   })
   async findById(
     @param.path.number('id') id: number,
-    @param.filter(Address, {exclude: 'where'}) filter?: FilterExcludingWhere<Address>
+    @param.filter(Address, {exclude: 'where'})
+    filter?: FilterExcludingWhere<Address>,
   ): Promise<Address> {
     return this.addressRepository.findById(id, filter);
   }

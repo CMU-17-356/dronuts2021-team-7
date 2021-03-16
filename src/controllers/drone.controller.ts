@@ -23,7 +23,7 @@ import {DroneRepository} from '../repositories';
 export class DroneController {
   constructor(
     @repository(DroneRepository)
-    public droneRepository : DroneRepository,
+    public droneRepository: DroneRepository,
   ) {}
 
   @post('/drones')
@@ -52,9 +52,7 @@ export class DroneController {
     description: 'Drone model count',
     content: {'application/json': {schema: CountSchema}},
   })
-  async count(
-    @param.where(Drone) where?: Where<Drone>,
-  ): Promise<Count> {
+  async count(@param.where(Drone) where?: Where<Drone>): Promise<Count> {
     return this.droneRepository.count(where);
   }
 
@@ -70,9 +68,7 @@ export class DroneController {
       },
     },
   })
-  async find(
-    @param.filter(Drone) filter?: Filter<Drone>,
-  ): Promise<Drone[]> {
+  async find(@param.filter(Drone) filter?: Filter<Drone>): Promise<Drone[]> {
     return this.droneRepository.find(filter);
   }
 
@@ -106,7 +102,8 @@ export class DroneController {
   })
   async findById(
     @param.path.number('id') id: number,
-    @param.filter(Drone, {exclude: 'where'}) filter?: FilterExcludingWhere<Drone>
+    @param.filter(Drone, {exclude: 'where'})
+    filter?: FilterExcludingWhere<Drone>,
   ): Promise<Drone> {
     return this.droneRepository.findById(id, filter);
   }

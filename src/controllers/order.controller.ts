@@ -23,7 +23,7 @@ import {OrderRepository} from '../repositories';
 export class OrderController {
   constructor(
     @repository(OrderRepository)
-    public orderRepository : OrderRepository,
+    public orderRepository: OrderRepository,
   ) {}
 
   @post('/orders')
@@ -52,9 +52,7 @@ export class OrderController {
     description: 'Order model count',
     content: {'application/json': {schema: CountSchema}},
   })
-  async count(
-    @param.where(Order) where?: Where<Order>,
-  ): Promise<Count> {
+  async count(@param.where(Order) where?: Where<Order>): Promise<Count> {
     return this.orderRepository.count(where);
   }
 
@@ -70,9 +68,7 @@ export class OrderController {
       },
     },
   })
-  async find(
-    @param.filter(Order) filter?: Filter<Order>,
-  ): Promise<Order[]> {
+  async find(@param.filter(Order) filter?: Filter<Order>): Promise<Order[]> {
     return this.orderRepository.find(filter);
   }
 
@@ -106,7 +102,8 @@ export class OrderController {
   })
   async findById(
     @param.path.number('id') id: number,
-    @param.filter(Order, {exclude: 'where'}) filter?: FilterExcludingWhere<Order>
+    @param.filter(Order, {exclude: 'where'})
+    filter?: FilterExcludingWhere<Order>,
   ): Promise<Order> {
     return this.orderRepository.findById(id, filter);
   }

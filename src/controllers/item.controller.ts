@@ -23,7 +23,7 @@ import {ItemRepository} from '../repositories';
 export class ItemController {
   constructor(
     @repository(ItemRepository)
-    public itemRepository : ItemRepository,
+    public itemRepository: ItemRepository,
   ) {}
 
   @post('/items')
@@ -52,9 +52,7 @@ export class ItemController {
     description: 'Item model count',
     content: {'application/json': {schema: CountSchema}},
   })
-  async count(
-    @param.where(Item) where?: Where<Item>,
-  ): Promise<Count> {
+  async count(@param.where(Item) where?: Where<Item>): Promise<Count> {
     return this.itemRepository.count(where);
   }
 
@@ -70,9 +68,7 @@ export class ItemController {
       },
     },
   })
-  async find(
-    @param.filter(Item) filter?: Filter<Item>,
-  ): Promise<Item[]> {
+  async find(@param.filter(Item) filter?: Filter<Item>): Promise<Item[]> {
     return this.itemRepository.find(filter);
   }
 
@@ -106,7 +102,7 @@ export class ItemController {
   })
   async findById(
     @param.path.number('id') id: number,
-    @param.filter(Item, {exclude: 'where'}) filter?: FilterExcludingWhere<Item>
+    @param.filter(Item, {exclude: 'where'}) filter?: FilterExcludingWhere<Item>,
   ): Promise<Item> {
     return this.itemRepository.findById(id, filter);
   }

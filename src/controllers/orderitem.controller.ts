@@ -23,7 +23,7 @@ import {OrderItemRepository} from '../repositories';
 export class OrderitemController {
   constructor(
     @repository(OrderItemRepository)
-    public orderItemRepository : OrderItemRepository,
+    public orderItemRepository: OrderItemRepository,
   ) {}
 
   @post('/order-items')
@@ -106,7 +106,8 @@ export class OrderitemController {
   })
   async findById(
     @param.path.number('id') id: number,
-    @param.filter(OrderItem, {exclude: 'where'}) filter?: FilterExcludingWhere<OrderItem>
+    @param.filter(OrderItem, {exclude: 'where'})
+    filter?: FilterExcludingWhere<OrderItem>,
   ): Promise<OrderItem> {
     return this.orderItemRepository.findById(id, filter);
   }
