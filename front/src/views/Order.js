@@ -31,18 +31,18 @@ const useStyles = makeStyles((theme) => ({
 export default function Order() {
 
   const classes = useStyles();
-  const {donuts, orders} = useContext(DronutContext);
+  const {donuts, orderID, orders, updateOrderID} = useContext(DronutContext);
 
-  const q0 = orders[0][0]
-  const q1 = orders[0][1]
-  const q2 = orders[0][2]
+  const q0 = orders[orderID][0]
+  const q1 = orders[orderID][1]
+  const q2 = orders[orderID][2]
 
   return (
     <div>
       <AppBar position="static" color="transparent">
         <Toolbar>
           <img className="AppBar-logo" src={logo} alt='logo'/>
-          <SearchBar className={classes.title} placeholder="Order ID">
+          <SearchBar className={classes.title} placeholder="Order ID" value={orderID} onChange={(e)=>updateOrderID(e)}>
           </SearchBar>
           <Button className={classes.button} color="secondary" component={ Link } to='/'>Home</Button>
           <Button className={classes.button} color="secondary" component={ Link } to='/menu'>Menu</Button>

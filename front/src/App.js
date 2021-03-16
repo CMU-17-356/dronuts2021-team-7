@@ -38,17 +38,26 @@ const donuts = [
 export default function App() {
   const [address, setAddress] = useState('');
   const [cart, setCart] = useState([0,0,0]);
-  const [orders, setOrders] = useState([{0:1,1:1,2:1}]);
-  const [total, setTotal] = useState(0);
   const [coordinates, setCoordinates] = useState({});
+  const [orders, setOrders] = useState([{0:1,1:1,2:1}]);
+  const [orderID, setOrderID] = useState(0);
+  const [total, setTotal] = useState(0);
 
   const updateAddress = (e) => setAddress(e);
   const updateCoordinates = (e) => setCoordinates(e);
   const updateOrders = () => {
+    console.log("updating orders")
     var newOrders = [];
     orders.forEach(o => newOrders.push(o));
     newOrders.push({0:cart[0], 1:cart[1], 2:cart[2]})
     setOrders(newOrders);
+    updateOrderID(orders.length);
+  }
+  const updateOrderID = (e) => {
+    console.log("updating order id " + e)
+    if (e) {
+      setOrderID(e);
+    }
   }
   const increment = (id) => {
     var newCart = []
@@ -80,7 +89,7 @@ export default function App() {
   console.log('Total: ' + total);
 
   return (
-    <DronutContextProvider value={{address, donuts, updateAddress, updateOrders, cart, increment, decrement, orders, coordinates, updateCoordinates}}>
+    <DronutContextProvider value={{address, donuts, updateAddress, updateOrders, cart, increment, decrement, orderID, orders, coordinates, updateCoordinates, updateOrderID}}>
     <Router>
       <div>
           {/* A <Switch> looks through its children <Route>s and
