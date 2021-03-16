@@ -7,6 +7,10 @@
   pointer-events: none;
 }
 
+.AppBar-logo {
+  height: 10vmin;
+}
+
 .App-header {
   min-height: 100vh;
   display: flex;

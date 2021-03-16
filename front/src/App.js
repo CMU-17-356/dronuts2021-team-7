@@ -53,24 +53,10 @@ export default function App() {
   console.log(total);
 
   return (
-    <DronutContextProvider value={{address, updateAddress, cart, increment, decrement, orders, total}}>
+    <DronutContextProvider value={{address, updateAddress, cart, increment, decrement, orders}}>
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/menu">Menu</Link>
-            </li>
-            <li>
-              <Link to="/orders">Orders</Link>
-            </li>
-          </ul>
-        </nav>
-
-
+        
           {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
           <Switch>
@@ -81,9 +67,9 @@ export default function App() {
               <Orders />
             </Route>
             <Route path="/">
-
+            
               <Home />
-
+             
             </Route>
           </Switch>
       </div>
