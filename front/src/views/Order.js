@@ -33,9 +33,14 @@ export default function Order() {
   const classes = useStyles();
   const {donuts, orderID, orders, updateOrderID} = useContext(DronutContext);
 
-  const q0 = orders[orderID][0]
-  const q1 = orders[orderID][1]
-  const q2 = orders[orderID][2]
+  var q0 = orders[0][0];
+  var q1 = orders[0][1];
+  var q2 = orders[0][2];
+  if (orderID < orders.length) {
+    q0 = orders[orderID][0]
+    q1 = orders[orderID][1]
+    q2 = orders[orderID][2]
+  }
 
   return (
     <div>
