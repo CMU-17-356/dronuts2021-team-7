@@ -38,7 +38,7 @@ const donuts = [
 export default function App() {
   const [address, setAddress] = useState('');
   const [cart, setCart] = useState([0,0,0]);
-  const [orders, setOrders] = useState([[1,1,1]]);
+  const [orders, setOrders] = useState([[1,1,0]]);
   const [total, setTotal] = useState(0);
   const [coordinates, setCoordinates] = useState({});
 

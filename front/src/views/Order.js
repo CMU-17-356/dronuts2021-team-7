@@ -34,9 +34,6 @@ export default function Order() {
   const {donuts, orders} = useContext(DronutContext);
 
   const [q0, q1, q2] = orders[0]
-  console.log(q0);
-  console.log(q1);
-  console.log(q2);
 
   return (
     <div>

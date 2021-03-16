@@ -45,6 +45,8 @@ export default function MenuItem(props) {
 
   const { cart, increment, decrement } = useContext(DronutContext);
 
+  console.log(!props.quantity);
+
   return (
     <Grid item xs={4}>
           <Card className={classes.root}>
@@ -58,9 +60,9 @@ export default function MenuItem(props) {
           </Typography>
         </CardContent>
         <div className={classes.controls}>
-          {!props.quantity && <IconButton aria-label="previous" onClick={()=>{decrement(props.donut.id)}}>-</IconButton>}
+          {props.quantity == null && <IconButton aria-label="previous" onClick={()=>{decrement(props.donut.id)}}>-</IconButton>}
           {props.quantity ? props.quantity : cart[props.donut.id]} units
-          {!props.quantity && <IconButton aria-label="previous" onClick={()=>{increment(props.donut.id)}}>+</IconButton>}
+          {props.quantity == null && <IconButton aria-label="previous" onClick={()=>{increment(props.donut.id)}}>+</IconButton>}
         </div>
       </div>
       <CardMedia
