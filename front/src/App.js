@@ -62,7 +62,6 @@ export default function App() {
     <DronutContextProvider value={{address, updateAddress, cart, increment, decrement, orders}}>
     <Router>
       <div>
-        
           {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
           <Switch>
@@ -73,9 +72,7 @@ export default function App() {
               <Orders />
             </Route>
             <Route path="/">
-            
               <Home />
-             
             </Route>
           </Switch>
       </div>

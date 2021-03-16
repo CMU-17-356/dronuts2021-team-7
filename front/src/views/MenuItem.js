@@ -18,7 +18,8 @@ import donut2 from '../donut2.jpg'
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    maxWidth: 420
+    maxWidth: 420,
+    margin: theme.spacing(1)
   },
   details: {
     display: 'flex',
