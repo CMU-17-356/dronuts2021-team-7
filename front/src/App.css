@@ -7,8 +7,11 @@
   pointer-events: none;
 }
 
+.AppBar-logo {
+  height: 10vmin;
+}
+
 .App-header {
-  background-color: #FFFFFF;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -19,9 +22,9 @@
 }
 
 .App-link {
-  color: #c4c4c4;
+  color: #61dafb;
 }
 
-.rounded-rect {
-  border-radius: 8px;
+.Smaller {
+  height: 100
 }
