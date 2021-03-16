@@ -8,7 +8,7 @@ describe('Order (unit)', () => {
     date: dateD,
     customerId: 1,
     droneId: 2,
-    employeeAssigned: 3,
+    employeeId: 3,
   });
   it('stores id correctly', () => {
     expect(cust.id).to.equal(1);
@@ -20,7 +20,7 @@ describe('Order (unit)', () => {
     expect(cust.droneId).to.equal(2);
   });
   it('stores employee id stored correctly', () => {
-    expect(cust.employeeAssigned).to.equal(3);
+    expect(cust.employeeId).to.equal(3);
   });
   it('Date assigned correctly', () => {
     expect(cust.date).to.equal(dateD);

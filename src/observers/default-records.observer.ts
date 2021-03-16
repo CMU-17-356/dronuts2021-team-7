@@ -5,6 +5,7 @@ import {
   lifeCycleObserver,
   LifeCycleObserver,
 } from '@loopback/core';
+import {Address, Customer} from '../models';
 import {
   AddressRepository,
   CustomerRepository,
@@ -38,22 +39,24 @@ export class DefaultRecordsObserver implements LifeCycleObserver {
    * This method will be invoked when the application starts.
    */
   async start(): Promise<void> {
-    const customer = {
+    const customer = new Customer({
       username: 'johndoe',
       password: 'secret',
       firstName: 'John',
       lastName: 'Doe',
       emailId: 'john@example.com',
-    };
+    });
     const custResult = await this.customerRepo.create(customer);
-    const address = {
+    const address = new Address({
       line1: '5032 Forbes Ave',
       line2: 'SMC 1234',
       city: 'Pittsburgh',
       state: 'PA',
       zipCode: 15289,
       customerId: custResult.id,
-    };
+    });
+    const addrResult = await this.addressRepo.create(address);
+
     const item1 = {
       name: 'Marble-Frosted Donut',
       description: 'Another donut',
@@ -78,9 +81,8 @@ export class DefaultRecordsObserver implements LifeCycleObserver {
     };
     const item3Res = await this.itemRepo.create(item3);
 
-    const addrResult = await this.addressRepo.create(address);
     console.log('Created address ', addrResult);
-    console.log('Created customer ', custResult);
+    console.log('Created customer ', this.customerRepo.findById(custResult.id));
     console.log('Created item ', item1Res);
     console.log('Created item ', item2Res);
     console.log('Created item ', item3Res);
