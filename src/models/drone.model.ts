@@ -1,4 +1,4 @@
-import {Entity, hasOne, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
 import {Order} from './order.model';
 
 @model()
@@ -10,8 +10,8 @@ export class Drone extends Entity {
   })
   id: number;
 
-  @hasOne(() => Order)
-  order: Order;
+  @hasMany(() => Order)
+  orders: Order[];
 
   constructor(data?: Partial<Drone>) {
     super(data);
