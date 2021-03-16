@@ -52,6 +52,11 @@ export class Address extends Entity {
   })
   zipCode: number;
 
+  @property({
+    type: 'number',
+  })
+  customerId?: number;
+
   constructor(data?: Partial<Address>) {
     super(data);
   }
