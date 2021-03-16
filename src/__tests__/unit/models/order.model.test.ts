@@ -1,10 +1,15 @@
 import {expect} from '@loopback/testlab';
 import {Order} from '../../../models';
 
-
 describe('Order (unit)', () => {
-  const dateD = new Date(1,2,3)
-  const cust = new Order({id: 1, date: dateD, customerId: 1, droneId: 2, employeeAssigned: 3})
+  const dateD = new Date(1, 2, 3);
+  const cust = new Order({
+    id: 1,
+    date: dateD,
+    customerId: 1,
+    droneId: 2,
+    employeeAssigned: 3,
+  });
   it('stores id correctly', () => {
     expect(cust.id).to.equal(1);
   });

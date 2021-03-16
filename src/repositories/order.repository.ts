@@ -1,36 +1,14 @@
-import {Getter, inject} from '@loopback/core';
-import {
-  DefaultCrudRepository,
-  HasManyRepositoryFactory,
-  repository,
-} from '@loopback/repository';
-import {DatasourceDataSource} from '../datasources';
-import {Order, OrderItem, OrderRelations} from '../models';
-import {OrderItemRepository} from './order-item.repository';
+import {inject} from '@loopback/core';
+import {DefaultCrudRepository} from '@loopback/repository';
+import {NewDataSource} from '../datasources';
+import {Order, OrderRelations} from '../models';
 
 export class OrderRepository extends DefaultCrudRepository<
   Order,
   typeof Order.prototype.id,
   OrderRelations
 > {
-  public readonly orderItems: HasManyRepositoryFactory<
-    OrderItem,
-    typeof Order.prototype.id
-  >;
-
-  constructor(
-    @inject('datasources.datasource') dataSource: DatasourceDataSource,
-    @repository.getter('OrderItemRepository')
-    protected orderItemRepositoryGetter: Getter<OrderItemRepository>,
-  ) {
+  constructor(@inject('datasources.new') dataSource: NewDataSource) {
     super(Order, dataSource);
-    this.orderItems = this.createHasManyRepositoryFactoryFor(
-      'orderItems',
-      orderItemRepositoryGetter,
-    );
-    this.registerInclusionResolver(
-      'orderItems',
-      this.orderItems.inclusionResolver,
-    );
   }
 }

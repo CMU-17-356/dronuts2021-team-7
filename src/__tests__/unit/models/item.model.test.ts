@@ -1,9 +1,14 @@
 import {expect} from '@loopback/testlab';
 import {Item} from '../../../models';
 
-
 describe('Item (unit)', () => {
-  const cust = new Item({id: 1, name: "Ayaan", description: "Hussain", price: 2, qtyAvailable: 4})
+  const cust = new Item({
+    id: 1,
+    name: 'Ayaan',
+    description: 'Hussain',
+    price: 2,
+    qtyAvailable: 4,
+  });
   it('stores name correctly', () => {
     expect(cust.name).to.equal('Ayaan');
   });

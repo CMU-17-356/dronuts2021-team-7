@@ -1,5 +1,4 @@
-# dronuts-2021-team7
-[![Build Status](https://travis-ci.com/CMU-17-356/dronuts2021-team-7.svg?token=98JXQWxeLMsQFpwsX39S&branch=master)](https://travis-ci.com/CMU-17-356/dronuts2021-team-7)
+# test
 
 This application is generated using [LoopBack 4 CLI](https://loopback.io/doc/en/lb4/Command-line-interface.html) with the
 [initial project layout](https://loopback.io/doc/en/lb4/Loopback-application-layout.html).
@@ -27,7 +26,11 @@ npm start
 
 You can also run `node .` to skip the build step.
 
+<<<<<<< HEAD
 Open https://dronuts.azurewebsites.net/ in your browser.
+=======
+Open http://127.0.0.1:3000 in your browser.
+>>>>>>> 0216f635ad519a976e42868a8263037465b5c147
 
 ## Rebuild the project
 

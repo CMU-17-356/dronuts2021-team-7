@@ -1,33 +1,14 @@
-import {inject, Getter} from '@loopback/core';
-import {
-  DefaultCrudRepository,
-  repository,
-  HasOneRepositoryFactory,
-} from '@loopback/repository';
-import {DatasourceDataSource} from '../datasources';
-import {Drone, DroneRelations, Order} from '../models';
-import {OrderRepository} from './order.repository';
+import {inject} from '@loopback/core';
+import {DefaultCrudRepository} from '@loopback/repository';
+import {NewDataSource} from '../datasources';
+import {Drone, DroneRelations} from '../models';
 
 export class DroneRepository extends DefaultCrudRepository<
   Drone,
   typeof Drone.prototype.id,
   DroneRelations
 > {
-  public readonly order: HasOneRepositoryFactory<
-    Order,
-    typeof Drone.prototype.id
-  >;
-
-  constructor(
-    @inject('datasources.datasource') dataSource: DatasourceDataSource,
-    @repository.getter('OrderRepository')
-    protected orderRepositoryGetter: Getter<OrderRepository>,
-  ) {
+  constructor(@inject('datasources.new') dataSource: NewDataSource) {
     super(Drone, dataSource);
-    this.order = this.createHasOneRepositoryFactoryFor(
-      'order',
-      orderRepositoryGetter,
-    );
-    this.registerInclusionResolver('order', this.order.inclusionResolver);
   }
 }
