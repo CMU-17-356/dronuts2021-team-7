@@ -12,3 +12,4 @@ export * from './customer-order.controller';
 export * from './drone-order.controller';
 export * from './employee-order.controller';
 export * from './order-item-item.controller';
+export * from './order-address.controller';
