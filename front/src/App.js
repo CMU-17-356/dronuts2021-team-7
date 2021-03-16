@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
 
@@ -54,22 +54,22 @@ export default function App() {
   console.log(total);
 
   return (
-    <DronutContextProvider value={{address, updateAddress, cart, increment, decrement, orders, total}}>
-    <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/menu">Menu</Link>
-            </li>
-            <li>
-              <Link to="/orders">Orders</Link>
-            </li>
-          </ul>
-        </nav>
+    <DronutContextProvider value={{ address, updateAddress, cart, increment, decrement, orders, total }}>
+      <Router>
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/menu">Menu</Link>
+              </li>
+              <li>
+                <Link to="/orders">Orders</Link>
+              </li>
+            </ul>
+          </nav>
 
 
           {/* A <Switch> looks through its children <Route>s and
@@ -90,8 +90,8 @@ export default function App() {
 
             </Route>
           </Switch>
-      </div>
-    </Router>
+        </div>
+      </Router>
     </DronutContextProvider>
   );
 }
