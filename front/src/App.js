@@ -12,25 +12,88 @@ import Order from './views/Order';
 import donut0 from './donut0.jpg'
 import donut1 from './donut1.jpg'
 import donut2 from './donut2.jpg'
+import donut3 from './donut3.jpg'
+import donut4 from './donut4.jpg'
+import donut5 from './donut5.jpg'
+import donut6 from './donut6.jpg'
+import donut7 from './donut7.jpg'
+import donut8 from './donut8.jpg'
+import donut9 from './donut9.jpg'
+import donut10 from './donut10.jpg'
+import donut11 from './donut11.jpg'
 import DronutContextProvider from './contexts/DronutContext';
 
 const donuts = [
   {
     id: 0,
-    name: 'Marble-Frosted Donut',
+    name: 'Apple-Crumb Donut',
     image: donut0,
     price: 2,
   },
   {
     id: 1,
-    name: 'Old-Fashioned Donut',
+    name: 'Bavarian Kreme-Filled Donut',
     image: donut1,
     price: 2,
   },
   {
     id: 2,
-    name: 'Powered Sugar Donut',
+    name: 'Boston Kreme Pie Donut',
     image: donut2,
+    price: 2,
+  },
+  {
+    id: 3,
+    name: 'Chocolate Kreme-Filled Donut',
+    image: donut3,
+    price: 2,
+  },
+  {
+    id: 4,
+    name: 'Chocolate-Frosted Donut',
+    image: donut4,
+    price: 2,
+  },
+  {
+    id: 5,
+    name: 'Chocolate-Glazed Cake Donut',
+    image: donut5,
+    price: 2,
+  },
+  {
+    id: 6,
+    name: 'Cinnamon-Sugar Donut',
+    image: donut6,
+    price: 2,
+  },
+  {
+    id: 7,
+    name: 'Marble-Frosted Donut',
+    image: donut7,
+    price: 2,
+  },
+  {
+    id: 8,
+    name: 'Old-Fashioned Donut',
+    image: donut8,
+    price: 2,
+  },
+  {
+    id: 9,
+    name: 'Powered Sugar Donut',
+    image: donut9,
+    price: 2,
+  },
+  {
+    id: 10,
+    name: 'Strawberry-Frosted Donut',
+    image: donut10,
+    price: 2,
+  },
+  {
+    id: 11,
+    name: 'Vanilla-Frosted Donut',
+    image: donut11,
     price: 2,
   },
 ]
