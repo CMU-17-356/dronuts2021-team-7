@@ -68,11 +68,11 @@ export default function Menu() {
         </Typography>
         <Button className={classes.button} color="secondary" component={ Link } to='/'>Home</Button>
         <Button className={classes.button} color="secondary" component={ Link } to='/menu'>Menu</Button>
-        <Button className={classes.button} color="secondary" component={ Link } to='/orders'>Orders</Button>
+        <Button className={classes.button} color="secondary" component={ Link } to='/order'>Order</Button>
       </Toolbar>
     </AppBar>
 
-    <Grid container spacing={3}>
+    <Grid container spacing={1}>
       {donuts.map(donut => <MenuItem donut={donut}/>)}
     </Grid>
     <Button variant="contained" className={classes.root} color="secondary" component={ Link } to='/orders'>Pay</Button>

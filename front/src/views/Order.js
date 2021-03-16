@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Orders() {
+export default function Order() {
 
   const context = {
     orders: [
@@ -48,7 +48,7 @@ export default function Orders() {
           </Typography>
           <Button className={classes.button} color="secondary" component={ Link } to='/'>Home</Button>
           <Button className={classes.button} color="secondary" component={ Link } to='/menu'>Menu</Button>
-          <Button className={classes.button} color="secondary" component={ Link } to='/orders'>Orders</Button>
+          <Button className={classes.button} color="secondary" component={ Link } to='/order'>Order</Button>
         </Toolbar>
       </AppBar>
       <ul>

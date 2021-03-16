@@ -8,7 +8,7 @@ import {
 
 import Home from './views/Home';
 import Menu from './views/Menu';
-import Orders from './views/Orders';
+import Order from './views/Order';
 
 import DronutContextProvider from './contexts/DronutContext';
 
@@ -71,8 +71,8 @@ export default function App() {
             <Route path="/menu">
               <Menu />
             </Route>
-            <Route path="/orders">
-              <Orders />
+            <Route path="/order">
+              <Order />
             </Route>
             <Route path="/">
               <Home />
