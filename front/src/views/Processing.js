@@ -1,13 +1,14 @@
 import AxiosCurlirize from 'axios-curlirize';
 import { useEffect, useState } from 'react';
-import Async from 'react-async';
+import { Redirect } from 'react-router';
 
 const axios = require('axios').default;
-
+AxiosCurlirize(axios);
 function Processing(props) {
 
 
   const [process,setProcess] = useState({});
+  // const [status,setStatus] = useState({});
 
   async function getStatus() {
     try {
@@ -20,21 +21,29 @@ function Processing(props) {
     }
   }
 
+  async function sendDrone() {
+    try {
+      const response = await axios.put('http://drones.17-356.isri.cmu.edu/api/drones/41/send',{lat : 40.44, lon: -79.95});
+      // handle success
+      console.log("BROOO"+response.data)
+      // setStatus(response.data)
+    } catch (error) {
+      // handle error
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     getStatus()
-
-
   }
   )
 
-  if(process.status == 'approved'){
-    return(
-      <div>
-        Payment Success! Redirecting
-      </div>
+  if(process.status === 'approved'){
+    return(console.log("GOING OUT"),sendDrone(),
+      <Redirect to={'/status/'+props.match.params.id+"/41/40.44/-79.95"}></Redirect>
     )
   }
-  else if(process.status == 'denied'){
+  else if(process.status === 'denied'){
     return(
       <div>
         Payment Denied, please try checking out again.

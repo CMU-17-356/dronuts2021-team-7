@@ -6,8 +6,11 @@ const instance = axios.create({
   baseURL: 'http://credit.17-356.isri.cmu.edu/api',
 headers: {'Accept':'application/json'}});
 AxiosCurlirize(instance);
+
+
+
 let pl = {companyId : "team_7", 
-amount: 9}
+amount: 88}
 
 class Orders extends Component{
 
@@ -44,7 +47,7 @@ class Orders extends Component{
   }
 
   render() {
-    const { error, isLoaded, items,paidc,paid } = this.state;
+    const { error, isLoaded, items} = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {

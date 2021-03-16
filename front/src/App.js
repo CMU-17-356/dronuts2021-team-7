@@ -10,11 +10,12 @@ import Home from './views/Home';
 import Menu from './views/Menu';
 import Orders from './views/Orders';
 import Processing from './views/Processing';
+import Status from './views/Status';
 
 import DronutContextProvider from './contexts/DronutContext';
-import curlirize from 'axios-curlirize';
+// import curlirize from 'axios-curlirize';
 
-const axios = require('axios').default;
+// const axios = require('axios').default;
 
 export default function App() {
   const [address, setAddress] = useState('');
@@ -66,6 +67,9 @@ export default function App() {
             <Route path="/menu">
               <Menu />
             </Route>
+
+          <Route path='/status/:id/:drone/:lat/:long' render={(props) => <Status {...props}/>}/>
+
             <Route path="/orders">
               <Orders />
             </Route>
