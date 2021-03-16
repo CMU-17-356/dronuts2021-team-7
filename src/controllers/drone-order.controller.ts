@@ -15,16 +15,13 @@ import {
   post,
   requestBody,
 } from '@loopback/rest';
-import {
-  Drone,
-  Order,
-} from '../models';
+import {Drone, Order} from '../models';
 import {DroneRepository} from '../repositories';
 
 export class DroneOrderController {
   constructor(
     @repository(DroneRepository) protected droneRepository: DroneRepository,
-  ) { }
+  ) {}
 
   @get('/drones/{id}/orders', {
     responses: {
@@ -61,11 +58,12 @@ export class DroneOrderController {
           schema: getModelSchemaRef(Order, {
             title: 'NewOrderInDrone',
             exclude: ['id'],
-            optional: ['droneId']
+            optional: ['droneId'],
           }),
         },
       },
-    }) order: Omit<Order, 'id'>,
+    })
+    order: Omit<Order, 'id'>,
   ): Promise<Order> {
     return this.droneRepository.orders(id).create(order);
   }

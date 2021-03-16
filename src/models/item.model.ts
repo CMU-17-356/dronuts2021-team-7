@@ -45,7 +45,6 @@ export class Item extends Entity {
   })
   qtyAvailable: number;
 
-
   constructor(data?: Partial<Item>) {
     super(data);
   }

@@ -3,7 +3,7 @@ import {
   CountSchema,
   Filter,
   repository,
-  Where
+  Where,
 } from '@loopback/repository';
 import {
   del,
@@ -13,17 +13,16 @@ import {
   param,
   patch,
   post,
-  requestBody
+  requestBody,
 } from '@loopback/rest';
-import {
-  Address, Customer
-} from '../models';
+import {Address, Customer} from '../models';
 import {CustomerRepository} from '../repositories';
 
 export class CustomerAddressController {
   constructor(
-    @repository(CustomerRepository) protected customerRepository: CustomerRepository,
-  ) { }
+    @repository(CustomerRepository)
+    protected customerRepository: CustomerRepository,
+  ) {}
 
   @get('/customers/{id}/addresses', {
     responses: {
@@ -60,11 +59,12 @@ export class CustomerAddressController {
           schema: getModelSchemaRef(Address, {
             title: 'NewAddressInCustomer',
             exclude: ['id'],
-            optional: ['customerId']
+            optional: ['customerId'],
           }),
         },
       },
-    }) address: Omit<Address, 'id'>,
+    })
+    address: Omit<Address, 'id'>,
   ): Promise<Address> {
     return this.customerRepository.addresses(id).create(address);
   }
@@ -87,7 +87,8 @@ export class CustomerAddressController {
       },
     })
     address: Partial<Address>,
-    @param.query.object('where', getWhereSchemaFor(Address)) where?: Where<Address>,
+    @param.query.object('where', getWhereSchemaFor(Address))
+    where?: Where<Address>,
   ): Promise<Count> {
     return this.customerRepository.addresses(id).patch(address, where);
   }
@@ -102,7 +103,8 @@ export class CustomerAddressController {
   })
   async delete(
     @param.path.number('id') id: number,
-    @param.query.object('where', getWhereSchemaFor(Address)) where?: Where<Address>,
+    @param.query.object('where', getWhereSchemaFor(Address))
+    where?: Where<Address>,
   ): Promise<Count> {
     return this.customerRepository.addresses(id).delete(where);
   }

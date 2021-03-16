@@ -15,16 +15,14 @@ import {
   post,
   requestBody,
 } from '@loopback/rest';
-import {
-  Employee,
-  Order,
-} from '../models';
+import {Employee, Order} from '../models';
 import {EmployeeRepository} from '../repositories';
 
 export class EmployeeOrderController {
   constructor(
-    @repository(EmployeeRepository) protected employeeRepository: EmployeeRepository,
-  ) { }
+    @repository(EmployeeRepository)
+    protected employeeRepository: EmployeeRepository,
+  ) {}
 
   @get('/employees/{id}/orders', {
     responses: {
@@ -61,11 +59,12 @@ export class EmployeeOrderController {
           schema: getModelSchemaRef(Order, {
             title: 'NewOrderInEmployee',
             exclude: ['id'],
-            optional: ['employeeId']
+            optional: ['employeeId'],
           }),
         },
       },
-    }) order: Omit<Order, 'id'>,
+    })
+    order: Omit<Order, 'id'>,
   ): Promise<Order> {
     return this.employeeRepository.orders(id).create(order);
   }

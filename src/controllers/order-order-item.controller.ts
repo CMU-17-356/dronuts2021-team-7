@@ -15,16 +15,13 @@ import {
   post,
   requestBody,
 } from '@loopback/rest';
-import {
-  Order,
-  OrderItem,
-} from '../models';
+import {Order, OrderItem} from '../models';
 import {OrderRepository} from '../repositories';
 
 export class OrderOrderItemController {
   constructor(
     @repository(OrderRepository) protected orderRepository: OrderRepository,
-  ) { }
+  ) {}
 
   @get('/orders/{id}/order-items', {
     responses: {
@@ -61,11 +58,12 @@ export class OrderOrderItemController {
           schema: getModelSchemaRef(OrderItem, {
             title: 'NewOrderItemInOrder',
             exclude: ['id'],
-            optional: ['orderId']
+            optional: ['orderId'],
           }),
         },
       },
-    }) orderItem: Omit<OrderItem, 'id'>,
+    })
+    orderItem: Omit<OrderItem, 'id'>,
   ): Promise<OrderItem> {
     return this.orderRepository.orderItems(id).create(orderItem);
   }
@@ -88,7 +86,8 @@ export class OrderOrderItemController {
       },
     })
     orderItem: Partial<OrderItem>,
-    @param.query.object('where', getWhereSchemaFor(OrderItem)) where?: Where<OrderItem>,
+    @param.query.object('where', getWhereSchemaFor(OrderItem))
+    where?: Where<OrderItem>,
   ): Promise<Count> {
     return this.orderRepository.orderItems(id).patch(orderItem, where);
   }
@@ -103,7 +102,8 @@ export class OrderOrderItemController {
   })
   async delete(
     @param.path.number('id') id: number,
-    @param.query.object('where', getWhereSchemaFor(OrderItem)) where?: Where<OrderItem>,
+    @param.query.object('where', getWhereSchemaFor(OrderItem))
+    where?: Where<OrderItem>,
   ): Promise<Count> {
     return this.orderRepository.orderItems(id).delete(where);
   }
