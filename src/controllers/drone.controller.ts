@@ -37,11 +37,12 @@ export class DroneController {
         'application/json': {
           schema: getModelSchemaRef(Drone, {
             title: 'NewDrone',
+            exclude: ['id'],
           }),
         },
       },
     })
-    drone: Drone,
+    drone: Omit<Drone, 'id'>,
   ): Promise<Drone> {
     return this.droneRepository.create(drone);
   }

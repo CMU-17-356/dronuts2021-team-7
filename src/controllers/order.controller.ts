@@ -7,20 +7,20 @@ import {
   Where,
 } from '@loopback/repository';
 import {
-  del,
+  post,
+  param,
   get,
   getModelSchemaRef,
-  param,
   patch,
-  post,
   put,
+  del,
   requestBody,
   response,
 } from '@loopback/rest';
 import {Order} from '../models';
 import {OrderRepository} from '../repositories';
 
-export class OrdersController {
+export class OrderController {
   constructor(
     @repository(OrderRepository)
     public orderRepository: OrderRepository,
@@ -37,11 +37,12 @@ export class OrdersController {
         'application/json': {
           schema: getModelSchemaRef(Order, {
             title: 'NewOrder',
+            exclude: ['id'],
           }),
         },
       },
     })
-    order: Order,
+    order: Omit<Order, 'id'>,
   ): Promise<Order> {
     return this.orderRepository.create(order);
   }
