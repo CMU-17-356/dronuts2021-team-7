@@ -3,16 +3,14 @@ import {
   CoreBindings,
   inject,
   lifeCycleObserver,
-  LifeCycleObserver
+  LifeCycleObserver,
 } from '@loopback/core';
 import {Address, Customer} from '../models';
 import {
   AddressRepository,
   CustomerRepository,
-  ItemRepository
+  ItemRepository,
 } from '../repositories';
-
-const axios = require('axios').default;
 
 /**
  * This class will be bound to the application as a `LifeCycleObserver` during
@@ -82,7 +80,6 @@ export class DefaultRecordsObserver implements LifeCycleObserver {
       qtyAvailable: 10,
     };
     const item3Res = await this.itemRepo.create(item3);
-
 
     console.log('Created address ', addrResult);
     console.log('Created customer ', this.customerRepo.findById(custResult.id));
