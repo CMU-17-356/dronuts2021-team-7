@@ -1,17 +1,19 @@
-import { useContext } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import React, {useContext} from 'react';
 import { Link } from "react-router-dom";
+import { makeStyles } from '@material-ui/core/styles';
+import {
+  AppBar, 
+  Button,
+  Grid,
+  Paper,
+  Toolbar,
+  Typography
+} from '@material-ui/core';
 
 import MenuItem from './MenuItem';
-import donutimage from '../donut.jpg';
-import logo from '../logo.png';
 import { DronutContext } from '../contexts/DronutContext';
+import logo from '../logo.png';
+import SearchBar from 'material-ui-search-bar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,38 +24,37 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    margin: theme.spacing(4),
   },
 }));
 
 export default function Order() {
 
-  const context = {
-    orders: [
-      {
-        orderID: 0,
-      }
-    ]
-  }
-
   const classes = useStyles();
+  const {donuts, orders} = useContext(DronutContext);
 
-  const orders = context.orders.map(order => <li>Order #{order.orderID}</li>)
+  const [q0, q1, q2] = orders[0]
+  console.log(q0);
+  console.log(q1);
+  console.log(q2);
+
   return (
     <div>
       <AppBar position="static" color="transparent">
         <Toolbar>
           <img className="AppBar-logo" src={logo} alt='logo'/>
-          <Typography className={classes.title}>
-            
-          </Typography>
+          <SearchBar className={classes.title} placeholder="Order ID">
+          </SearchBar>
           <Button className={classes.button} color="secondary" component={ Link } to='/'>Home</Button>
           <Button className={classes.button} color="secondary" component={ Link } to='/menu'>Menu</Button>
           <Button className={classes.button} color="secondary" component={ Link } to='/order'>Order</Button>
         </Toolbar>
       </AppBar>
-      <ul>
-        {orders}
-      </ul>
+      <Grid container spacing={1}>
+        <MenuItem donut={donuts[0]} quantity={q0} />
+        <MenuItem donut={donuts[1]} quantity={q1} />
+        <MenuItem donut={donuts[2]} quantity={q2} />
+      </Grid>
     </div>
   );
 }

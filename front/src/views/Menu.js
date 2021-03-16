@@ -12,31 +12,7 @@ import {
 
 import MenuItem from './MenuItem';
 import { DronutContext } from '../contexts/DronutContext';
-import donut0 from '../donut0.jpg'
-import donut1 from '../donut1.jpg'
-import donut2 from '../donut2.jpg'
 import logo from '../logo.png';
-
-const donuts = [
-  {
-    id: 0,
-    name: 'Marble-Frosted Donut',
-    image: donut0,
-    price: 2,
-  },
-  {
-    id: 1,
-    name: 'Old-Fashioned Donut',
-    image: donut1,
-    price: 2,
-  },
-  {
-    id: 2,
-    name: 'Powered Sugar Donut',
-    image: donut2,
-    price: 2,
-  },
-]
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Menu() {
 
   const classes = useStyles();
-  const {address, coordinates} = useContext(DronutContext);
+  const {address, coordinates, donuts, updateOrders} = useContext(DronutContext);
 
   return (
     <div className={classes.root}>
@@ -75,7 +51,7 @@ export default function Menu() {
     <Grid container spacing={1}>
       {donuts.map(donut => <MenuItem donut={donut}/>)}
     </Grid>
-    <Button variant="contained" className={classes.root} color="secondary" component={ Link } to='/orders'>Pay</Button>
+    <Button variant="contained" className={classes.root} color="secondary" component={ Link } to='/order' onClick={() => updateOrders()}>Pay</Button>
   </div>
   );
 }
