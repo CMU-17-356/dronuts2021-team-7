@@ -26,7 +26,11 @@ npm start
 
 You can also run `node .` to skip the build step.
 
+<<<<<<< HEAD
+Open https://dronuts.azurewebsites.net/ in your browser.
+=======
 Open http://127.0.0.1:3000 in your browser.
+>>>>>>> 0216f635ad519a976e42868a8263037465b5c147
 
 ## Rebuild the project
 
