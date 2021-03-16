@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
 
+
+  Link, Route, Switch
+} from "react-router-dom";
+import DronutContextProvider from './contexts/DronutContext';
+import EmployeeDashboard from "./views/EmployeeDashboard";
 import Home from './views/Home';
 import Menu from './views/Menu';
 import Orders from './views/Orders';
 
-import DronutContextProvider from './contexts/DronutContext';
+
 
 export default function App() {
   const [address, setAddress] = useState('');
@@ -54,7 +55,7 @@ export default function App() {
           </ul>
         </nav>
 
-        
+
           {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
           <Switch>
@@ -64,10 +65,13 @@ export default function App() {
             <Route path="/orders">
               <Orders />
             </Route>
+            <Route path="/employee">
+              <EmployeeDashboard />
+            </Route>
             <Route path="/">
-            
+
               <Home />
-             
+
             </Route>
           </Switch>
       </div>
