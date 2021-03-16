@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -21,6 +21,8 @@ import donut0 from '../donut0.jpg'
 import donut1 from '../donut1.jpg'
 import donut2 from '../donut2.jpg'
 import logo from '../logo.png';
+
+import { DronutContext } from '../contexts/DronutContext';
 
 const donuts = [
   {
@@ -62,6 +64,7 @@ export default function Menu() {
 
   const classes = useStyles();
   const [spacing, setSpacing] = React.useState(2);
+  const {address} = useContext(DronutContext);
 
   return (
     <div className={classes.root}>
@@ -69,6 +72,7 @@ export default function Menu() {
       <Toolbar>
         <img className="AppBar-logo" src={logo} alt='logo'/>
         <Typography className={classes.title}>
+          Delivery to: {address}
         </Typography>
         <Button className={classes.button} color="secondary" component={ Link } to='/'>Home</Button>
         <Button className={classes.button} color="secondary" component={ Link } to='/menu'>Menu</Button>

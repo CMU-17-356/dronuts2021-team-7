@@ -30,7 +30,7 @@ export default function App() {
   const [orders, setOrders] = useState([]);
   const [total, setTotal] = useState(0);
 
-  const updateAddress = (e) => setAddress(e.target.value);
+  const updateAddress = (e) => setAddress(e);
   const increment = (id) => {
     var newCart = []
     cart.forEach(i => newCart.push(i));
