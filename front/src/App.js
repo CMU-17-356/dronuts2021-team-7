@@ -78,6 +78,7 @@ const donuts = [
 ]
 
 export default function App() {
+  const [total, setTotal] = useState(0);
   const [address, setAddress] = useState('');
   const [cart, setCart] = useState([0,0,0,0,0,0,0,0,0]);
   const [coordinates, setCoordinates] = useState({lat: 40.26366144, lng: -79.56296556});
@@ -127,6 +128,8 @@ export default function App() {
       subtotal += cart[i] * donuts[i].price;
     }
     setTotal(subtotal);
+    // this.setTest(subtotal);
+    // console.log(test+"TEST");
   }, [cart])
 
   useEffect(() => {
@@ -167,18 +170,22 @@ export default function App() {
           {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
           <Switch>
-            <Route path="/menu">
+          <Route path='/process/:id' render={(props) => <Processing {...props}/>}/>
+            <Route path="/menu/">
               <Menu />
             </Route>
             <Route path="/order">
               <Order />
             </Route>
+            <Route path="/employee">
+              <EmployeeDashboard />
+            </Route>
             <Route path="/">
               <Home />
             </Route>
           </Switch>
-      </div>
-    </Router>
+        </div>
+      </Router>
     </DronutContextProvider>
   );
 }

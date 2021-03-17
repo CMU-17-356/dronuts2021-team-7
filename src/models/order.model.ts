@@ -1,4 +1,4 @@
-import {Entity, hasMany, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
 import {OrderItem} from './order-item.model';
 
 @model()
@@ -17,13 +17,13 @@ export class Order extends Entity {
   })
   date: Date;
 
+  @hasMany(() => OrderItem)
+  orderItems: OrderItem[];
+
   @property({
     type: 'number',
   })
-  customerId: number;
-
-  @hasMany(() => OrderItem)
-  orderItems: OrderItem[];
+  customerId?: number;
 
   @property({
     type: 'number',
@@ -33,12 +33,7 @@ export class Order extends Entity {
   @property({
     type: 'number',
   })
-  deliveryAddressId: number;
-
-  @property({
-    type: 'number',
-  })
-  employeeAssigned?: number;
+  employeeId?: number;
 
   constructor(data?: Partial<Order>) {
     super(data);

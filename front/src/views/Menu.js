@@ -13,6 +13,17 @@ import {
 import MenuItem from './MenuItem';
 import { DronutContext } from '../contexts/DronutContext';
 import logo from '../logo.png';
+import AxiosCurlirize from 'axios-curlirize';
+import App from '../App'
+
+//initializing api with url and header -Ay
+const axios = require('axios').default;
+const instance = axios.create({
+  baseURL: 'http://credit.17-356.isri.cmu.edu/api',
+headers: {'Accept':'application/json'}});
+// AxiosCurlirize(instance);
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,10 +40,29 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function Menu() {
-
+export default function Menu(props) {
+  const { total } = useContext(DronutContext);
+   
   const classes = useStyles();
   const {address, coordinates, donuts, updateOrders, total} = useContext(DronutContext);
+
+  //State to get and store transaction id
+  // const [items,setItems] = React.useState([]);
+  console.log(total+"BFBFB")
+  //getting transaction ID. 
+  async function getTransactionId() {
+    try {
+      const response = await instance.post('transactions',{companyId: 'team_7', amount: total});
+      // handle success
+      // console.log("BROOO"+response.data.id)
+      // setItems(response.data)
+      window.open("http://credit.17-356.isri.cmu.edu/?transaction_id="+response.data.id, '_blank');
+      window.location.href='/process/'+response.data.id;
+    } catch (error) {
+      // handle error
+      console.log(error);
+    }
+  }
 
   return (
     <div className={classes.root}>
@@ -51,8 +81,7 @@ export default function Menu() {
     <Grid container spacing={1}>
       {donuts.map(donut => <MenuItem donut={donut}/>)}
     </Grid>
-    {total > 0 
-    ? <Button variant="contained" className={classes.root} color="secondary" component={ Link } to='/order' onClick={() => updateOrders()}>Pay</Button> 
+    {total > 0 ? <Button onClick={() => getTransactionId();} variant="contained" className={classes.root} color="secondary" component={ Link } to='/order' onClick={() => updateOrders()}>Pay</Button> 
     : <Button disabled variant="contained" className={classes.root} color="secondary" component={ Link } to='/order' onClick={() => updateOrders()}>Pay</Button>}
   </div>
   );
