@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import {
     Button,
@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import logo from '../logo.png';
 import { DronutContext } from '../contexts/DronutContext';
 import '../App.css';
+import Search from './Search';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -22,18 +23,26 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
+
 export default function Home() {
 
     const classes = useStyles();
 
-    const {address, updateAddress} = useContext(DronutContext);
+    const [value, setValue] = useState(null);
+
+    const {address, clearcart, updateAddress, updateCoordinates} = useContext(DronutContext);
     return (
         <div>
             <header className="App-header">
                 <div><img className="App-logo" src={logo} alt='logo'/></div>
-                <div><TextField className={classes.root} label='Enter your address to get started' value={address} onChange={e => updateAddress(e)}></TextField></div>
-                <div><Button variant="outlined" className={classes.button} color="secondary" component={ Link } to='/menu'>Start ordering</Button></div>
-                <div><Link className="App-link" to="/orders">Already ordered?</Link></div>
+                {/* <div><TextField className={classes.root} label='Enter your address to get started' value={address} onChange={e => updateAddress(e)}></TextField></div> */}
+                <Search updateAddress={updateAddress} updateCoordinates={updateCoordinates} />
+                <div>{address.length == 0 ? 
+                  <Button variant="outlined" className={classes.button} color="secondary" onClick={() => clearcart()} component={ Link } to='/menu' disabled>Start ordering</Button> : 
+                  <Button variant="outlined" className={classes.button} color="secondary" onClick={() => clearcart()} component={ Link } to='/menu'>Start ordering</Button>}
+                </div>
+                <div><Link className="App-link" to="/order">Already ordered?</Link></div>
+                
             </header>
         </div>
     )
