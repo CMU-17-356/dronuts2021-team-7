@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Menu() {
 
   const classes = useStyles();
-  const {address, coordinates, donuts, updateOrders} = useContext(DronutContext);
+  const {address, coordinates, donuts, updateOrders, total} = useContext(DronutContext);
 
   return (
     <div className={classes.root}>
@@ -51,7 +51,9 @@ export default function Menu() {
     <Grid container spacing={1}>
       {donuts.map(donut => <MenuItem donut={donut}/>)}
     </Grid>
-    <Button variant="contained" className={classes.root} color="secondary" component={ Link } to='/order' onClick={() => updateOrders()}>Pay</Button>
+    {total > 0 ?
+    <Button variant="contained" className={classes.root} color="secondary" component={ Link } to='/order' onClick={() => updateOrders()}>Pay</Button> :
+    <Button disabled variant="contained" className={classes.root} color="secondary" component={ Link } to='/order' onClick={() => updateOrders()}>Pay</Button>}
   </div>
   );
 }

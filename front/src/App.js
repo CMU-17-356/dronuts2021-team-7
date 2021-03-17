@@ -161,7 +161,7 @@ export default function App() {
   console.log('Total: ' + total);
 
   return (
-    <DronutContextProvider value={{address, clearcart, donuts, updateAddress, updateOrders, pastAddress, cart, increment, decrement, orderID, orders, coordinates, updateCoordinates, updateOrderID}}>
+    <DronutContextProvider value={{address, clearcart, donuts, updateAddress, updateOrders, pastAddress, cart, increment, decrement, orderID, orders, coordinates, total, updateCoordinates, updateOrderID}}>
     <Router>
       <div>
           {/* A <Switch> looks through its children <Route>s and
