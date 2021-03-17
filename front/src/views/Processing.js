@@ -25,7 +25,7 @@ function Processing(props) {
     try {
       const response = await axios.put('http://drones.17-356.isri.cmu.edu/api/drones/41/send',{lat : 40.44, lon: -79.95});
       // handle success
-      console.log("BROOO"+response.data)
+      // console.log("BROOO"+response.data)
       // setStatus(response.data)
     } catch (error) {
       // handle error

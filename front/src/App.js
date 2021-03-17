@@ -19,6 +19,8 @@ import donut5 from './donut5.jpg'
 import donut6 from './donut6.jpg'
 import donut7 from './donut7.jpg'
 import donut8 from './donut8.jpg'
+import Processing from './views/Processing'
+import EmployeeDashboard from './views/EmployeeDashboard'
 
 const donuts = [
   {
@@ -85,7 +87,7 @@ export default function App() {
   const [orders, setOrders] = useState([{0:1,1:1,2:1,3:1,4:1,5:1,6:1,7:1,8:1,address:'5000 Forbes Ave, Pittsburgh, PA 15213'}]);
   const [orderID, setOrderID] = useState(0);
   const [pastAddress, setPastAddress] = useState('5000 Forbes Ave, Pittsburgh, PA 15213');
-  const [total, setTotal] = useState(18);
+  // const [total, setTotal] = useState(18);
 
   const updateAddress = (e) => setAddress(e);
   const updateCoordinates = (e) => setCoordinates(e);

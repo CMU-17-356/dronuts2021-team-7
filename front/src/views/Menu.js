@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function Menu(props) {
-  const { total } = useContext(DronutContext);
+  // const { total } = useContext(DronutContext);
    
   const classes = useStyles();
   const {address, coordinates, donuts, updateOrders, total} = useContext(DronutContext);
@@ -54,8 +54,7 @@ export default function Menu(props) {
     try {
       const response = await instance.post('transactions',{companyId: 'team_7', amount: total});
       // handle success
-      // console.log("BROOO"+response.data.id)
-      // setItems(response.data)
+      console.log(total+"BFBFB")
       window.open("http://credit.17-356.isri.cmu.edu/?transaction_id="+response.data.id, '_blank');
       window.location.href='/process/'+response.data.id;
     } catch (error) {
@@ -81,8 +80,9 @@ export default function Menu(props) {
     <Grid container spacing={1}>
       {donuts.map(donut => <MenuItem donut={donut}/>)}
     </Grid>
-    {total > 0 ? <Button onClick={() => getTransactionId();} variant="contained" className={classes.root} color="secondary" component={ Link } to='/order' onClick={() => updateOrders()}>Pay</Button> 
-    : <Button disabled variant="contained" className={classes.root} color="secondary" component={ Link } to='/order' onClick={() => updateOrders()}>Pay</Button>}
+    {total > 0 ? 
+    <Button variant="contained" className={classes.root} color="secondary" onClick={() => {getTransactionId()}}>Pay</Button> :
+    <Button disabled variant="contained" className={classes.root} color="secondary" component={ Link } to='/order' onClick={() => updateOrders()}>Pay</Button>}
   </div>
-  );
+  )
 }
