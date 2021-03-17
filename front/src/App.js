@@ -101,7 +101,7 @@ export default function App() {
   }
   const updateOrderID = (e) => {
     console.log("updating order id " + e)
-    if (e) {
+    if (e && e < orders.length) {
       setOrderID(e);
       setPastAddress(orders[orderID]['address'])
     }
