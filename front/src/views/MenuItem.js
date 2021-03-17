@@ -14,7 +14,8 @@ import { DronutContext } from '../contexts/DronutContext';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    margin: theme.spacing(2)
+    margin: theme.spacing(2),
+    minHeight: 180
   },
   details: {
     display: 'flex',
