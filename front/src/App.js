@@ -5,6 +5,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Geocode from "react-geocode";
 
 import Home from './views/Home';
 import Menu from './views/Menu';
@@ -123,6 +124,20 @@ export default function App() {
     }
     setTotal(subtotal);
   }, [cart])
+  useEffect(() => {
+    console.log('address updated');
+    Geocode.fromAddress(address).then(
+      (response) => {
+        const { lat, lng } = response.results[0].geometry.location;
+        console.log(lat)
+        console.log(lng)
+        updateCoordinates({ lat, lng });
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }, [address])
 
   console.log('Address: ' + address);
   console.log('Coordinates: ' + coordinates);

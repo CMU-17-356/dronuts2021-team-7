@@ -32,15 +32,11 @@ const containerStyle = {
   height: '400px'
 };
 
-// const center = {
-//   lat: -3.745,
-//   lng: -38.523
-// };
-
 function Map() {
 
     const {coordinates} = useContext(DronutContext);
 
+    console.log('hello')
     console.log(coordinates);
     const center = coordinates;
 
@@ -65,7 +61,7 @@ function Map() {
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={10}
+        zoom={15}
         onLoad={onLoad}
         onUnmount={onUnmount}
       >

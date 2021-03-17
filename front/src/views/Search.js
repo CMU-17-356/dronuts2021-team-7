@@ -53,23 +53,13 @@ class Search extends Component {
 
     // Check if address is valid
     if (address) {
-          Geocode.fromAddress(address).then(
-            (response) => {
-              const { lat, lng } = response.results[0].geometry.location;
-              this.setState(
-                {
-                  // city: address[0].long_name,
-                  query: addressObject.formatted_address,
-                  coordinates: {lat, lng}
-                }
-              );
-              this.props.updateAddress(this.state.query);
-              this.props.updateCoordinates(this.state.coordinates);
-            },
-            (error) => {
-              console.error(error);
-            }
-          );
+      this.setState(
+        {
+          // city: address[0].long_name,
+          query: addressObject.formatted_address,
+        }
+      );
+      this.props.updateAddress(this.state.query);
     }
   }
 
