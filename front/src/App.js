@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
-  Link
+  Switch,
 } from "react-router-dom";
 import Geocode from "react-geocode";
 
+import DronutContextProvider from './contexts/DronutContext';
 import Home from './views/Home';
 import Menu from './views/Menu';
 import Order from './views/Order';
@@ -19,7 +19,6 @@ import donut5 from './donut5.jpg'
 import donut6 from './donut6.jpg'
 import donut7 from './donut7.jpg'
 import donut8 from './donut8.jpg'
-import DronutContextProvider from './contexts/DronutContext';
 
 const donuts = [
   {
@@ -80,15 +79,14 @@ const donuts = [
 
 export default function App() {
   const [address, setAddress] = useState('');
-  const [pastAddress, setPastAddress] = useState('5000 Forbes Ave, Pittsburgh, PA 15213');
   const [cart, setCart] = useState([0,0,0,0,0,0,0,0,0]);
-  const [coordinates, setCoordinates] = useState({});
+  const [coordinates, setCoordinates] = useState({lat: 40.26366144, lng: -79.56296556});
   const [orders, setOrders] = useState([{0:1,1:1,2:1,3:1,4:1,5:1,6:1,7:1,8:1,address:'5000 Forbes Ave, Pittsburgh, PA 15213'}]);
   const [orderID, setOrderID] = useState(0);
-  const [total, setTotal] = useState(0);
+  const [pastAddress, setPastAddress] = useState('5000 Forbes Ave, Pittsburgh, PA 15213');
+  const [total, setTotal] = useState(18);
 
   const updateAddress = (e) => setAddress(e);
-  const updatePastAddress = (e) => setPastAddress(e);
   const updateCoordinates = (e) => setCoordinates(e);
   const updateOrders = () => {
     console.log("updating orders")
@@ -106,6 +104,8 @@ export default function App() {
       setPastAddress(orders[orderID]['address'])
     }
   }
+  const updatePastAddress = (e) => setPastAddress(e);
+
   const increment = (id) => {
     var newCart = []
     cart.forEach(i => newCart.push(i));
@@ -128,6 +128,15 @@ export default function App() {
     }
     setTotal(subtotal);
   }, [cart])
+
+  useEffect(() => {
+    updatePastAddress(orders[orderID]['address']);
+  }, [orderID])
+
+  useEffect(() => {
+    setOrderID(orders.length - 1);
+  }, [orders])
+  
   useEffect(() => {
     Geocode.fromAddress(pastAddress).then(
       (response) => {
