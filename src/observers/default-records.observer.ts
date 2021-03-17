@@ -5,11 +5,13 @@ import {
   lifeCycleObserver,
   LifeCycleObserver,
 } from '@loopback/core';
-import {Address, Customer} from '../models';
+import {Address, Customer, Order, OrderItem} from '../models';
 import {
   AddressRepository,
   CustomerRepository,
   ItemRepository,
+  OrderItemRepository,
+  OrderRepository,
 } from '../repositories';
 
 /**
@@ -25,6 +27,10 @@ export class DefaultRecordsObserver implements LifeCycleObserver {
     @inject('repositories.AddressRepository')
     private addressRepo: AddressRepository,
     @inject('repositories.ItemRepository') private itemRepo: ItemRepository,
+    @inject('repositories.OrderRepository')
+    private orderRepo: OrderRepository,
+    @inject('repositories.OrderItemRepository')
+    private orderItemRepo: OrderItemRepository,
   ) {}
 
   /**
@@ -81,11 +87,44 @@ export class DefaultRecordsObserver implements LifeCycleObserver {
     };
     const item3Res = await this.itemRepo.create(item3);
 
+    // Create orders
+    const order1 = new Order({
+      date: new Date('03/16/2021'),
+      customerId: custResult.id,
+      addressId: addrResult.id,
+    });
+    const orderRes = await this.orderRepo.create(order1);
+
+    const order2 = new Order({
+      date: new Date('03/13/2021'),
+      customerId: custResult.id,
+      addressId: addrResult.id,
+    });
+    const orderRes2 = await this.orderRepo.create(order2);
+
+    const orderItem1 = new OrderItem({
+      quantity: 2,
+      orderId: orderRes.id,
+      itemId: item1Res.id,
+    });
+    await this.orderItemRepo.create(orderItem1);
+
+    const orderItem2 = new OrderItem({
+      quantity: 2,
+      orderId: orderRes2.id,
+      itemId: item2Res.id,
+    });
+    await this.orderItemRepo.create(orderItem2);
+
     console.log('Created address ', addrResult);
-    console.log('Created customer ', this.customerRepo.findById(custResult.id));
+    console.log(
+      'Created customer ',
+      await this.customerRepo.findById(custResult.id),
+    );
     console.log('Created item ', item1Res);
     console.log('Created item ', item2Res);
     console.log('Created item ', item3Res);
+    console.log('Create order', orderRes);
   }
 
   /**
