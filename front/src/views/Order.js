@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Order() {
 
   const classes = useStyles();
-  const {address, donuts, orderID, orders, updateOrderID} = useContext(DronutContext);
+  const {pastAddress, donuts, orderID, orders, updateOrderID} = useContext(DronutContext);
 
   var q0 = orders[0][0];
   var q1 = orders[0][1];
@@ -43,7 +43,7 @@ export default function Order() {
   var q6 = orders[0][6];
   var q7 = orders[0][7];
   var q8 = orders[0][8];
-  var realAddress = address; 
+  var realAddress = pastAddress; 
   if (orderID < orders.length) {
     q0 = orders[orderID][0];
     q1 = orders[orderID][1];
@@ -72,6 +72,7 @@ export default function Order() {
           <Button className={classes.button} color="secondary" component={ Link } to='/order'>Order</Button>
         </Toolbar>
       </AppBar>
+      <Map />
       <Grid container spacing={1}>
         {q0>0 && <MenuItem donut={donuts[0]} quantity={q0} units={true} />}
         {q1>0 && <MenuItem donut={donuts[1]} quantity={q1} units={true} />}
@@ -83,7 +84,6 @@ export default function Order() {
         {q7>0 && <MenuItem donut={donuts[7]} quantity={q7} units={true} />}
         {q8>0 && <MenuItem donut={donuts[8]} quantity={q8} units={true} />}
       </Grid>
-      <Map />
     </div>
   );
 }

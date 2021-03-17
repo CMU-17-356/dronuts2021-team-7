@@ -28,7 +28,7 @@ import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { DronutContext } from '../contexts/DronutContext';
 
 const containerStyle = {
-  width: '400px',
+  width: `100%`,
   height: '400px'
 };
 
@@ -36,9 +36,7 @@ function Map() {
 
     const {coordinates} = useContext(DronutContext);
 
-    console.log('hello')
-    console.log(coordinates);
-    const center = coordinates;
+    const center = {lat: coordinates.lat, lng: coordinates.lng};
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -57,11 +55,12 @@ function Map() {
     setMap(null)
   }, [])
 
+
   return isLoaded ? (
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={15}
+        zoom={17}
         onLoad={onLoad}
         onUnmount={onUnmount}
       >

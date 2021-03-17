@@ -80,6 +80,7 @@ const donuts = [
 
 export default function App() {
   const [address, setAddress] = useState('');
+  const [pastAddress, setPastAddress] = useState('5000 Forbes Ave, Pittsburgh, PA 15213');
   const [cart, setCart] = useState([0,0,0,0,0,0,0,0,0]);
   const [coordinates, setCoordinates] = useState({});
   const [orders, setOrders] = useState([{0:1,1:1,2:1,3:1,4:1,5:1,6:1,7:1,8:1,address:'5000 Forbes Ave, Pittsburgh, PA 15213'}]);
@@ -87,6 +88,7 @@ export default function App() {
   const [total, setTotal] = useState(0);
 
   const updateAddress = (e) => setAddress(e);
+  const updatePastAddress = (e) => setPastAddress(e);
   const updateCoordinates = (e) => setCoordinates(e);
   const updateOrders = () => {
     console.log("updating orders")
@@ -95,11 +97,13 @@ export default function App() {
     newOrders.push({0:cart[0], 1:cart[1], 2:cart[2], 3:cart[3], 4:cart[4], 5:cart[5], 6:cart[6], 7:cart[7], 8:cart[8], address:address})
     setOrders(newOrders);
     updateOrderID(orders.length);
+    updatePastAddress(address);
   }
   const updateOrderID = (e) => {
     console.log("updating order id " + e)
     if (e) {
       setOrderID(e);
+      setPastAddress(orders[orderID]['address'])
     }
   }
   const increment = (id) => {
@@ -125,28 +129,26 @@ export default function App() {
     setTotal(subtotal);
   }, [cart])
   useEffect(() => {
-    console.log('address updated');
-    Geocode.fromAddress(address).then(
+    Geocode.fromAddress(pastAddress).then(
       (response) => {
         const { lat, lng } = response.results[0].geometry.location;
-        console.log(lat)
-        console.log(lng)
         updateCoordinates({ lat, lng });
       },
       (error) => {
         console.error(error);
       }
     );
-  }, [address])
+  }, [pastAddress])
 
   console.log('Address: ' + address);
+  console.log('Past Address: ' + pastAddress);
   console.log('Coordinates: ' + coordinates);
   console.log('Cart: ' + cart);
   console.log('Orders: ' + orders);
   console.log('Total: ' + total);
 
   return (
-    <DronutContextProvider value={{address, donuts, updateAddress, updateOrders, cart, increment, decrement, orderID, orders, coordinates, updateCoordinates, updateOrderID}}>
+    <DronutContextProvider value={{address, donuts, updateAddress, updateOrders, pastAddress, cart, increment, decrement, orderID, orders, coordinates, updateCoordinates, updateOrderID}}>
     <Router>
       <div>
           {/* A <Switch> looks through its children <Route>s and
