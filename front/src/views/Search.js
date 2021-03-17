@@ -1,6 +1,8 @@
 // Imports
 import React, { Component } from 'react';
 
+import {TextField} from '@material-ui/core';
+
 // Import Search Bar Components
 import SearchBar from 'material-ui-search-bar';
 
@@ -70,10 +72,10 @@ class Search extends Component {
           url="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFPwqB5cwmPTDpe3OCfkH1itg-2_DeNkA&libraries=places"
           onLoad={this.handleScriptLoad}
         />
-        <SearchBar id="autocomplete" placeholder="" value={this.state.query}
+        <SearchBar id="autocomplete" placeholder="Enter your address to start ordering" value={this.state.query}
           style={{
             margin: '0 auto',
-            maxWidth: 800,
+            minWidth: 400,
           }}
         />
       </div>

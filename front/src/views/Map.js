@@ -55,12 +55,11 @@ function Map() {
     setMap(null)
   }, [])
 
-
   return isLoaded ? (
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={16}
+        zoom={15}
         onLoad={onLoad}
         onUnmount={onUnmount}
       >

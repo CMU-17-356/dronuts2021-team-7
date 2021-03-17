@@ -94,14 +94,11 @@ export default function App() {
     orders.forEach(o => newOrders.push(o));
     newOrders.push({0:cart[0], 1:cart[1], 2:cart[2], 3:cart[3], 4:cart[4], 5:cart[5], 6:cart[6], 7:cart[7], 8:cart[8], address:address})
     setOrders(newOrders);
-    updateOrderID(orders.length);
-    updatePastAddress(address);
   }
   const updateOrderID = (e) => {
     console.log("updating order id " + e)
     if (e && e < orders.length) {
       setOrderID(e);
-      setPastAddress(orders[orderID]['address'])
     }
   }
   const updatePastAddress = (e) => setPastAddress(e);
@@ -120,6 +117,9 @@ export default function App() {
       setCart(newCart);
     }
   }
+  const clearcart = () => {
+    setCart([0,0,0,0,0,0,0,0,0]);
+  }
 
   useEffect(() => {
     var subtotal = 0;
@@ -135,6 +135,10 @@ export default function App() {
 
   useEffect(() => {
     setOrderID(orders.length - 1);
+    clearcart();
+    if (orders.length > 1) {
+      updatePastAddress(address);
+    }
   }, [orders])
   
   useEffect(() => {
@@ -157,7 +161,7 @@ export default function App() {
   console.log('Total: ' + total);
 
   return (
-    <DronutContextProvider value={{address, donuts, updateAddress, updateOrders, pastAddress, cart, increment, decrement, orderID, orders, coordinates, updateCoordinates, updateOrderID}}>
+    <DronutContextProvider value={{address, clearcart, donuts, updateAddress, updateOrders, pastAddress, cart, increment, decrement, orderID, orders, coordinates, updateCoordinates, updateOrderID}}>
     <Router>
       <div>
           {/* A <Switch> looks through its children <Route>s and
