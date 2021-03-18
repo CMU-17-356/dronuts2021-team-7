@@ -18,7 +18,7 @@ export default function EmployeeDashboard() {
 
   async function getOrderDetails(id) {
     try {
-      const response = await axios.get('http://localhost:3000/orders/' + id.target.value + '/order-items');
+      const response = await axios.get('http://dronuts7.azurewebsites.net/orders/' + id.target.value + '/order-items');
       console.log(response.data);
       setOrderDetails(response.data);
     } catch (error) {
@@ -28,11 +28,11 @@ export default function EmployeeDashboard() {
 
   async function getOrders() {
     try {
-      const response = await axios.get('http://localhost:3000/orders');
+      const response = await axios.get('http://dronuts7.azurewebsites.net/orders');
       let tmp = response.data;
       tmp.map(async function (order) {
-        const res = await axios.get('http://localhost:3000/customers/' + order['customerId']);
-        const addrRes = await axios.get('http://localhost:3000/addresses/' + order['addressId'])
+        const res = await axios.get('http://dronuts7.azurewebsites.net/customers/' + order['customerId']);
+        const addrRes = await axios.get('http://dronuts7.azurewebsites.net/addresses/' + order['addressId'])
         Object.keys(res.data).forEach(function(key) {
           if (key !== 'id') {
             order[key] = res.data[key];
@@ -55,7 +55,7 @@ export default function EmployeeDashboard() {
   }
   async function updateOrder(param) {
     try {
-      const res = await axios.delete('http://localhost:3000/orders/' + param.data.id);
+      const res = await axios.delete('http://dronuts7.azurewebsites.net/orders/' + param.data.id);
       getOrders();
     } catch (error) {
       console.log(error);
