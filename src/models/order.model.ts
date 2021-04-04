@@ -1,12 +1,12 @@
 import {
+  belongsTo,
   Entity,
+  hasMany,
   model,
   property,
-  hasMany,
-  belongsTo,
 } from '@loopback/repository';
-import {OrderItem} from './order-item.model';
 import {Address} from './address.model';
+import {OrderItem} from './order-item.model';
 
 @model()
 export class Order extends Entity {
@@ -15,12 +15,12 @@ export class Order extends Entity {
     id: true,
     generated: true,
   })
-  id: number;
+  id?: number;
 
   @property({
     type: 'date',
-    required: true,
     jsonSchema: {},
+    defaultFn: 'now',
   })
   date: Date;
 
