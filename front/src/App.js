@@ -201,9 +201,9 @@ export default function App() {
 
   console.log('Address: ' + address);
   console.log('Past Address: ' + pastAddress);
-  console.log('Coordinates: ' + coordinates);
+  console.log('Coordinates: ' + JSON.stringify(coordinates));
   console.log('Cart: ' + cart);
-  console.log('Orders: ' + orders);
+  console.log('Orders: ' + JSON.stringify(orders));
   console.log('Total: ' + total);
 
   return (

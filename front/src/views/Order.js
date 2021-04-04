@@ -1,20 +1,20 @@
-import React, {useContext} from 'react';
-import { Link } from "react-router-dom";
-import { makeStyles } from '@material-ui/core/styles';
 import {
-  AppBar, 
+  AppBar,
   Button,
   Grid,
-  Paper,
+
   Toolbar,
   Typography
 } from '@material-ui/core';
-
-import MenuItem from './MenuItem';
-import Map from './Map';
+import { makeStyles } from '@material-ui/core/styles';
+import SearchBar from 'material-ui-search-bar';
+import React, { useContext } from 'react';
+import { Link } from "react-router-dom";
 import { DronutContext } from '../contexts/DronutContext';
 import logo from '../logo.png';
-import SearchBar from 'material-ui-search-bar';
+import Map from './Map';
+import MenuItem from './MenuItem';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,7 +43,7 @@ export default function Order() {
   var q6 = orders[0][6];
   var q7 = orders[0][7];
   var q8 = orders[0][8];
-  var realAddress = pastAddress; 
+  var realAddress = pastAddress;
   if (orderID < orders.length) {
     q0 = orders[orderID][0];
     q1 = orders[orderID][1];
@@ -70,6 +70,7 @@ export default function Order() {
           <Button className={classes.button} color="secondary" component={ Link } to='/'>Home</Button>
           <Button className={classes.button} color="secondary" component={ Link } to='/menu'>Menu</Button>
           <Button className={classes.button} color="secondary" component={ Link } to='/order'>Order</Button>
+          <Button className={classes.button} color="secondary" component={ Link } to='/employee'>Employees</Button>
         </Toolbar>
       </AppBar>
       <Map />
