@@ -1,4 +1,3 @@
-import AxiosCurlirize from 'axios-curlirize';
 import { useEffect, useState } from 'react';
 import { Redirect } from 'react-router';
 import { createOrders } from '../BackendUtil.js';
@@ -48,8 +47,8 @@ function Processing(props) {
         Payment Denied, please try checking out again.
       </div>
     )
-  } else if(/*process.status === 'approved'*/ true) {
-    return(console.log("GOING OUT"),/*sendDrone(),*/
+  } else if(process.status === 'approved') {
+    return(console.log("GOING OUT"),sendDrone(),
       <Redirect to={'/order/'}></Redirect>
     )
   }

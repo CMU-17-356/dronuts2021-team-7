@@ -7,8 +7,8 @@ import {
   Typography
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import React, { useContext } from 'react';
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from 'react';
+import { Link, Redirect } from "react-router-dom";
 import { DronutContext } from '../contexts/DronutContext';
 import logo from '../logo.png';
 import MenuItem from './MenuItem';
@@ -43,6 +43,8 @@ export default function Menu(props) {
 
   const classes = useStyles();
   const {address, coordinates, donuts, updateOrders, total} = useContext(DronutContext);
+  const [redirect, setRedirect] = useState(false);
+  let response_data_id = 0;
 
   //State to get and store transaction id
   // const [items,setItems] = React.useState([]);
@@ -54,10 +56,19 @@ export default function Menu(props) {
       // handle success
       console.log(total+"BFBFB")
       window.open("http://credit.17-356.isri.cmu.edu/?transaction_id="+response.data.id, '_blank');
+      response_data_id = response.data.id;
       window.location.href='/process/'+response.data.id;
+      /*this.props.history.push('/process/'+response.data.id);*/
     } catch (error) {
       // handle error
       console.log(error);
+    }
+  }
+
+  function renderRedirect() {
+    if (redirect) {
+      console.log("Redirect!");
+      return <Redirect to={"/process/" + response_data_id} />;
     }
   }
 
@@ -72,6 +83,7 @@ export default function Menu(props) {
         <Button className={classes.button} color="secondary" component={ Link } to='/'>Home</Button>
         <Button className={classes.button} color="secondary" component={ Link } to='/menu'>Menu</Button>
         <Button className={classes.button} color="secondary" component={ Link } to='/order'>Order</Button>
+        <Button className={classes.button} color="secondary" component={ Link } to='/employee'>Employees</Button>
       </Toolbar>
     </AppBar>
 
