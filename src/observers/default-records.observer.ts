@@ -5,7 +5,7 @@ import {
   lifeCycleObserver,
   LifeCycleObserver,
 } from '@loopback/core';
-import {Address, Customer, Order, OrderItem} from '../models';
+import {Address, Customer} from '../models';
 import {
   AddressRepository,
   CustomerRepository,
@@ -64,30 +64,78 @@ export class DefaultRecordsObserver implements LifeCycleObserver {
     const addrResult = await this.addressRepo.create(address);
 
     const item1 = {
+      name: 'Apple-Crumb Donut',
+      description: 'Another donut',
+      price: 2,
+      qtyAvailable: 10,
+    };
+    await this.itemRepo.create(item1);
+
+    const item2 = {
+      name: 'Bavarian Kreme-Filled Donut',
+      description: 'Another donut',
+      price: 2,
+      qtyAvailable: 10,
+    };
+    await this.itemRepo.create(item2);
+
+    const item3 = {
+      name: 'Boston Kreme Pie Donut',
+      description: 'Another donut',
+      price: 2,
+      qtyAvailable: 10,
+    };
+    await this.itemRepo.create(item3);
+
+    const item4 = {
+      name: 'Chocolate Kreme-Filled Donut',
+      description: 'Another donut',
+      price: 2,
+      qtyAvailable: 10,
+    };
+    await this.itemRepo.create(item4);
+
+    const item5 = {
+      name: 'Chocolate-Frosted Donut',
+      description: 'Another donut',
+      price: 2,
+      qtyAvailable: 10,
+    };
+    await this.itemRepo.create(item5);
+
+    const item6 = {
+      name: 'Chocolate-Glazed Cake Donut',
+      description: 'Another donut',
+      price: 2,
+      qtyAvailable: 10,
+    };
+    await this.itemRepo.create(item6);
+
+    const item7 = {
+      name: 'Cinnamon-Sugar Donut',
+      description: 'Another donut',
+      price: 2,
+      qtyAvailable: 10,
+    };
+    await this.itemRepo.create(item7);
+
+    const item8 = {
       name: 'Marble-Frosted Donut',
       description: 'Another donut',
       price: 2,
       qtyAvailable: 10,
     };
-    const item1Res = await this.itemRepo.create(item1);
+    await this.itemRepo.create(item8);
 
-    const item2 = {
+    const item9 = {
       name: 'Old-Fashioned Donut',
       description: 'Another donut',
       price: 2,
       qtyAvailable: 10,
     };
-    const item2Res = await this.itemRepo.create(item2);
+    await this.itemRepo.create(item9);
 
-    const item3 = {
-      name: 'Powdered Sugar Donut',
-      description: 'Another donut',
-      price: 2,
-      qtyAvailable: 10,
-    };
-    const item3Res = await this.itemRepo.create(item3);
-
-    // Create orders
+    /*// Create orders
     const order1 = new Order({
       date: new Date('03/16/2021'),
       customerId: custResult.id,
@@ -114,17 +162,17 @@ export class DefaultRecordsObserver implements LifeCycleObserver {
       orderId: orderRes2.id,
       itemId: item2Res.id,
     });
-    await this.orderItemRepo.create(orderItem2);
+    await this.orderItemRepo.create(orderItem2);*/
 
     console.log('Created address ', addrResult);
     console.log(
       'Created customer ',
       await this.customerRepo.findById(custResult.id),
     );
-    console.log('Created item ', item1Res);
+    /*console.log('Created item ', item1Res);
     console.log('Created item ', item2Res);
     console.log('Created item ', item3Res);
-    console.log('Create order', orderRes);
+    console.log('Create order', orderRes);*/
   }
 
   /**

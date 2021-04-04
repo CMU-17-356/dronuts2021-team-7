@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from "react";
+import Geocode from "react-geocode";
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
+  Switch
 } from "react-router-dom";
-import Geocode from "react-geocode";
-
 import DronutContextProvider from './contexts/DronutContext';
+import donut0 from './donut0.jpg';
+import donut1 from './donut1.jpg';
+import donut2 from './donut2.jpg';
+import donut3 from './donut3.jpg';
+import donut4 from './donut4.jpg';
+import donut5 from './donut5.jpg';
+import donut6 from './donut6.jpg';
+import donut7 from './donut7.jpg';
+import donut8 from './donut8.jpg';
+import EmployeeDashboard from './views/EmployeeDashboard';
 import Home from './views/Home';
 import Menu from './views/Menu';
 import Order from './views/Order';
-import donut0 from './donut0.jpg'
-import donut1 from './donut1.jpg'
-import donut2 from './donut2.jpg'
-import donut3 from './donut3.jpg'
-import donut4 from './donut4.jpg'
-import donut5 from './donut5.jpg'
-import donut6 from './donut6.jpg'
-import donut7 from './donut7.jpg'
-import donut8 from './donut8.jpg'
-import Processing from './views/Processing'
-import EmployeeDashboard from './views/EmployeeDashboard'
+import Processing from './views/Processing';
+
 
 const donuts = [
   {
@@ -145,7 +145,7 @@ export default function App() {
       updatePastAddress(address);
     }
   }, [orders])
-  
+
   useEffect(() => {
     Geocode.fromAddress(pastAddress).then(
       (response) => {
@@ -160,9 +160,9 @@ export default function App() {
 
   console.log('Address: ' + address);
   console.log('Past Address: ' + pastAddress);
-  console.log('Coordinates: ' + coordinates);
+  console.log('Coordinates: ' + JSON.stringify(coordinates));
   console.log('Cart: ' + cart);
-  console.log('Orders: ' + orders);
+  console.log('Orders: ' + JSON.stringify(orders));
   console.log('Total: ' + total);
 
   return (
@@ -172,7 +172,7 @@ export default function App() {
           {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
           <Switch>
-          <Route path='/process/:id' render={(props) => <Processing {...props}/>}/>
+          <Route path='/process/:id' render={(props) => <Processing orders={orders} {...props} />}/>
             <Route path="/menu/">
               <Menu />
             </Route>
