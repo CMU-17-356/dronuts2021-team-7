@@ -17,6 +17,8 @@ import donut7 from './donut7.jpg';
 import donut8 from './donut8.jpg';
 import EmployeeDashboard from './views/EmployeeDashboard';
 import Home from './views/Home';
+import Edit from './views/Edit';
+
 import Menu from './views/Menu';
 import Order from './views/Order';
 import Processing from './views/Processing';
@@ -214,6 +216,9 @@ export default function App() {
             <Route path='/process/:id' render={(props) => <Processing {...props} />} />
             <Route path="/menu/">
               <Menu />
+            </Route>
+            <Route path="/edit/">
+              <Edit />
             </Route>
             <Route path="/order">
               <Order />
